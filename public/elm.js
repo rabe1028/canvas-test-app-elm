@@ -1529,7 +1529,7 @@ function _Json_runArrayDecoder(decoder, value, toElmValue)
 
 function _Json_isArray(value)
 {
-	return Array.isArray(value) || (typeof FileList === 'function' && value instanceof FileList);
+	return Array.isArray(value) || (typeof FileList !== 'undefined' && value instanceof FileList);
 }
 
 function _Json_toElmArray(array)
@@ -4310,9 +4310,47 @@ function _Browser_load(url)
 		}
 	}));
 }
-var author$project$Main$Frame = function (a) {
-	return {$: 'Frame', a: a};
+
+
+
+var _Bitwise_and = F2(function(a, b)
+{
+	return a & b;
+});
+
+var _Bitwise_or = F2(function(a, b)
+{
+	return a | b;
+});
+
+var _Bitwise_xor = F2(function(a, b)
+{
+	return a ^ b;
+});
+
+function _Bitwise_complement(a)
+{
+	return ~a;
 };
+
+var _Bitwise_shiftLeftBy = F2(function(offset, a)
+{
+	return a << offset;
+});
+
+var _Bitwise_shiftRightBy = F2(function(offset, a)
+{
+	return a >> offset;
+});
+
+var _Bitwise_shiftRightZfBy = F2(function(offset, a)
+{
+	return a >>> offset;
+});
+var avh4$elm_color$Color$RgbaSpace = F4(
+	function (a, b, c, d) {
+		return {$: 'RgbaSpace', a: a, b: b, c: c, d: d};
+	});
 var elm$core$Basics$EQ = {$: 'EQ'};
 var elm$core$Basics$GT = {$: 'GT'};
 var elm$core$Basics$LT = {$: 'LT'};
@@ -4393,33 +4431,40 @@ var elm$core$Array$foldr = F3(
 var elm$core$Array$toList = function (array) {
 	return A3(elm$core$Array$foldr, elm$core$List$cons, _List_Nil, array);
 };
-var elm$core$Basics$mul = _Basics_mul;
-var author$project$Main$height = 400 * 3;
-var author$project$Main$width = 400 * 3;
-var avh4$elm_color$Color$RgbaSpace = F4(
-	function (a, b, c, d) {
-		return {$: 'RgbaSpace', a: a, b: b, c: c, d: d};
-	});
 var elm$core$Basics$fdiv = _Basics_fdiv;
-var avh4$elm_color$Color$white = A4(avh4$elm_color$Color$RgbaSpace, 255 / 255, 255 / 255, 255 / 255, 1.0);
-var joakin$elm_canvas$Canvas$Internal$Canvas$Rect = F3(
-	function (a, b, c) {
-		return {$: 'Rect', a: a, b: b, c: c};
+var avh4$elm_color$Color$lightBlue = A4(avh4$elm_color$Color$RgbaSpace, 114 / 255, 159 / 255, 207 / 255, 1.0);
+var elm$core$Array$Array_elm_builtin = F4(
+	function (a, b, c, d) {
+		return {$: 'Array_elm_builtin', a: a, b: b, c: c, d: d};
 	});
-var joakin$elm_canvas$Canvas$rect = F3(
-	function (pos, width, height) {
-		return A3(joakin$elm_canvas$Canvas$Internal$Canvas$Rect, pos, width, height);
+var elm$core$Array$branchFactor = 32;
+var elm$core$Basics$ceiling = _Basics_ceiling;
+var elm$core$Basics$logBase = F2(
+	function (base, number) {
+		return _Basics_log(number) / _Basics_log(base);
 	});
-var elm$core$Basics$identity = function (x) {
-	return x;
+var elm$core$Basics$toFloat = _Basics_toFloat;
+var elm$core$Array$shiftStep = elm$core$Basics$ceiling(
+	A2(elm$core$Basics$logBase, 2, elm$core$Array$branchFactor));
+var elm$core$Elm$JsArray$empty = _JsArray_empty;
+var elm$core$Array$empty = A4(elm$core$Array$Array_elm_builtin, 0, elm$core$Array$shiftStep, elm$core$Elm$JsArray$empty, elm$core$Elm$JsArray$empty);
+var elm$core$Maybe$Nothing = {$: 'Nothing'};
+var elm$core$Basics$False = {$: 'False'};
+var elm$core$Basics$True = {$: 'True'};
+var elm$core$Result$isOk = function (result) {
+	if (result.$ === 'Ok') {
+		return true;
+	} else {
+		return false;
+	}
 };
-var joakin$elm_canvas$Canvas$Renderable = function (a) {
-	return {$: 'Renderable', a: a};
+var elm$core$Array$Leaf = function (a) {
+	return {$: 'Leaf', a: a};
 };
-var elm$core$Basics$apL = F2(
-	function (f, x) {
-		return f(x);
-	});
+var elm$core$Array$SubTree = function (a) {
+	return {$: 'SubTree', a: a};
+};
+var elm$core$Elm$JsArray$initializeFromList = _JsArray_initializeFromList;
 var elm$core$List$foldl = F3(
 	function (func, acc, list) {
 		foldl:
@@ -4439,291 +4484,9 @@ var elm$core$List$foldl = F3(
 			}
 		}
 	});
-var joakin$elm_canvas$Canvas$Internal$Canvas$Fill = function (a) {
-	return {$: 'Fill', a: a};
-};
-var joakin$elm_canvas$Canvas$Internal$Canvas$FillAndStroke = F2(
-	function (a, b) {
-		return {$: 'FillAndStroke', a: a, b: b};
-	});
-var joakin$elm_canvas$Canvas$Internal$Canvas$Stroke = function (a) {
-	return {$: 'Stroke', a: a};
-};
-var joakin$elm_canvas$Canvas$mergeDrawOp = F2(
-	function (op1, op2) {
-		var _n0 = _Utils_Tuple2(op1, op2);
-		_n0$7:
-		while (true) {
-			switch (_n0.b.$) {
-				case 'FillAndStroke':
-					var _n1 = _n0.b;
-					var c = _n1.a;
-					var sc = _n1.b;
-					return A2(joakin$elm_canvas$Canvas$Internal$Canvas$FillAndStroke, c, sc);
-				case 'Fill':
-					switch (_n0.a.$) {
-						case 'Fill':
-							var c = _n0.b.a;
-							return joakin$elm_canvas$Canvas$Internal$Canvas$Fill(c);
-						case 'Stroke':
-							var c1 = _n0.a.a;
-							var c2 = _n0.b.a;
-							return A2(joakin$elm_canvas$Canvas$Internal$Canvas$FillAndStroke, c2, c1);
-						case 'FillAndStroke':
-							var _n2 = _n0.a;
-							var c = _n2.a;
-							var sc = _n2.b;
-							var c2 = _n0.b.a;
-							return A2(joakin$elm_canvas$Canvas$Internal$Canvas$FillAndStroke, c2, sc);
-						default:
-							break _n0$7;
-					}
-				case 'Stroke':
-					switch (_n0.a.$) {
-						case 'Stroke':
-							var c = _n0.b.a;
-							return joakin$elm_canvas$Canvas$Internal$Canvas$Stroke(c);
-						case 'Fill':
-							var c1 = _n0.a.a;
-							var c2 = _n0.b.a;
-							return A2(joakin$elm_canvas$Canvas$Internal$Canvas$FillAndStroke, c1, c2);
-						case 'FillAndStroke':
-							var _n3 = _n0.a;
-							var c = _n3.a;
-							var sc = _n3.b;
-							var sc2 = _n0.b.a;
-							return A2(joakin$elm_canvas$Canvas$Internal$Canvas$FillAndStroke, c, sc2);
-						default:
-							break _n0$7;
-					}
-				default:
-					if (_n0.a.$ === 'NotSpecified') {
-						break _n0$7;
-					} else {
-						var whatever = _n0.a;
-						var _n5 = _n0.b;
-						return whatever;
-					}
-			}
-		}
-		var _n4 = _n0.a;
-		var whatever = _n0.b;
-		return whatever;
-	});
-var joakin$elm_canvas$Canvas$addSettingsToRenderable = F2(
-	function (settings, renderable) {
-		var addSetting = F2(
-			function (setting, _n1) {
-				var r = _n1.a;
-				return joakin$elm_canvas$Canvas$Renderable(
-					function () {
-						switch (setting.$) {
-							case 'SettingCommand':
-								var cmd = setting.a;
-								return _Utils_update(
-									r,
-									{
-										commands: A2(elm$core$List$cons, cmd, r.commands)
-									});
-							case 'SettingCommands':
-								var cmds = setting.a;
-								return _Utils_update(
-									r,
-									{
-										commands: A3(elm$core$List$foldl, elm$core$List$cons, r.commands, cmds)
-									});
-							case 'SettingUpdateDrawable':
-								var f = setting.a;
-								return _Utils_update(
-									r,
-									{
-										drawable: f(r.drawable)
-									});
-							default:
-								var op = setting.a;
-								return _Utils_update(
-									r,
-									{
-										drawOp: A2(joakin$elm_canvas$Canvas$mergeDrawOp, r.drawOp, op)
-									});
-						}
-					}());
-			});
-		return A3(elm$core$List$foldl, addSetting, renderable, settings);
-	});
-var joakin$elm_canvas$Canvas$Internal$Canvas$DrawableShapes = function (a) {
-	return {$: 'DrawableShapes', a: a};
-};
-var joakin$elm_canvas$Canvas$Internal$Canvas$NotSpecified = {$: 'NotSpecified'};
-var joakin$elm_canvas$Canvas$shapes = F2(
-	function (settings, ss) {
-		return A2(
-			joakin$elm_canvas$Canvas$addSettingsToRenderable,
-			settings,
-			joakin$elm_canvas$Canvas$Renderable(
-				{
-					commands: _List_Nil,
-					drawOp: joakin$elm_canvas$Canvas$Internal$Canvas$NotSpecified,
-					drawable: joakin$elm_canvas$Canvas$Internal$Canvas$DrawableShapes(ss)
-				}));
-	});
-var joakin$elm_canvas$Canvas$Internal$Canvas$SettingDrawOp = function (a) {
-	return {$: 'SettingDrawOp', a: a};
-};
-var joakin$elm_canvas$Canvas$Settings$fill = function (color) {
-	return joakin$elm_canvas$Canvas$Internal$Canvas$SettingDrawOp(
-		joakin$elm_canvas$Canvas$Internal$Canvas$Fill(color));
-};
-var author$project$Main$clearScreen = A2(
-	joakin$elm_canvas$Canvas$shapes,
-	_List_fromArray(
-		[
-			joakin$elm_canvas$Canvas$Settings$fill(avh4$elm_color$Color$white)
-		]),
-	_List_fromArray(
-		[
-			A3(
-			joakin$elm_canvas$Canvas$rect,
-			_Utils_Tuple2(0, 0),
-			author$project$Main$width,
-			author$project$Main$height)
-		]));
-var author$project$Main$centerX = author$project$Main$width / 2;
-var author$project$Main$centerY = author$project$Main$height / 2;
-var elm$core$Basics$add = _Basics_add;
-var elm$core$Basics$gt = _Utils_gt;
-var elm$core$Basics$le = _Utils_le;
-var elm$core$Basics$lt = _Utils_lt;
-var elm$core$Basics$sub = _Basics_sub;
-var avh4$elm_color$Color$hsla = F4(
-	function (hue, sat, light, alpha) {
-		var _n0 = _Utils_Tuple3(hue, sat, light);
-		var h = _n0.a;
-		var s = _n0.b;
-		var l = _n0.c;
-		var m2 = (l <= 0.5) ? (l * (s + 1)) : ((l + s) - (l * s));
-		var m1 = (l * 2) - m2;
-		var hueToRgb = function (h__) {
-			var h_ = (h__ < 0) ? (h__ + 1) : ((h__ > 1) ? (h__ - 1) : h__);
-			return ((h_ * 6) < 1) ? (m1 + (((m2 - m1) * h_) * 6)) : (((h_ * 2) < 1) ? m2 : (((h_ * 3) < 2) ? (m1 + (((m2 - m1) * ((2 / 3) - h_)) * 6)) : m1));
-		};
-		var b = hueToRgb(h - (1 / 3));
-		var g = hueToRgb(h);
-		var r = hueToRgb(h + (1 / 3));
-		return A4(avh4$elm_color$Color$RgbaSpace, r, g, b, alpha);
-	});
-var avh4$elm_color$Color$hsl = F3(
-	function (h, s, l) {
-		return A4(avh4$elm_color$Color$hsla, h, s, l, 1.0);
-	});
-var elm$core$Basics$pi = _Basics_pi;
-var elm$core$Basics$degrees = function (angleInDegrees) {
-	return (angleInDegrees * elm$core$Basics$pi) / 180;
-};
-var elm$core$Basics$negate = function (n) {
-	return -n;
-};
-var joakin$elm_canvas$Canvas$Settings$Advanced$Rotate = function (a) {
-	return {$: 'Rotate', a: a};
-};
-var joakin$elm_canvas$Canvas$Settings$Advanced$rotate = joakin$elm_canvas$Canvas$Settings$Advanced$Rotate;
 var elm$core$List$reverse = function (list) {
 	return A3(elm$core$List$foldl, elm$core$List$cons, _List_Nil, list);
 };
-var elm$core$List$foldrHelper = F4(
-	function (fn, acc, ctr, ls) {
-		if (!ls.b) {
-			return acc;
-		} else {
-			var a = ls.a;
-			var r1 = ls.b;
-			if (!r1.b) {
-				return A2(fn, a, acc);
-			} else {
-				var b = r1.a;
-				var r2 = r1.b;
-				if (!r2.b) {
-					return A2(
-						fn,
-						a,
-						A2(fn, b, acc));
-				} else {
-					var c = r2.a;
-					var r3 = r2.b;
-					if (!r3.b) {
-						return A2(
-							fn,
-							a,
-							A2(
-								fn,
-								b,
-								A2(fn, c, acc)));
-					} else {
-						var d = r3.a;
-						var r4 = r3.b;
-						var res = (ctr > 500) ? A3(
-							elm$core$List$foldl,
-							fn,
-							acc,
-							elm$core$List$reverse(r4)) : A4(elm$core$List$foldrHelper, fn, acc, ctr + 1, r4);
-						return A2(
-							fn,
-							a,
-							A2(
-								fn,
-								b,
-								A2(
-									fn,
-									c,
-									A2(fn, d, res))));
-					}
-				}
-			}
-		}
-	});
-var elm$core$List$foldr = F3(
-	function (fn, acc, ls) {
-		return A4(elm$core$List$foldrHelper, fn, acc, 0, ls);
-	});
-var elm$core$List$map = F2(
-	function (f, xs) {
-		return A3(
-			elm$core$List$foldr,
-			F2(
-				function (x, acc) {
-					return A2(
-						elm$core$List$cons,
-						f(x),
-						acc);
-				}),
-			_List_Nil,
-			xs);
-	});
-var joakin$elm_canvas$Canvas$Internal$Canvas$SettingCommands = function (a) {
-	return {$: 'SettingCommands', a: a};
-};
-var elm$core$Array$branchFactor = 32;
-var elm$core$Array$Array_elm_builtin = F4(
-	function (a, b, c, d) {
-		return {$: 'Array_elm_builtin', a: a, b: b, c: c, d: d};
-	});
-var elm$core$Basics$ceiling = _Basics_ceiling;
-var elm$core$Basics$logBase = F2(
-	function (base, number) {
-		return _Basics_log(number) / _Basics_log(base);
-	});
-var elm$core$Basics$toFloat = _Basics_toFloat;
-var elm$core$Array$shiftStep = elm$core$Basics$ceiling(
-	A2(elm$core$Basics$logBase, 2, elm$core$Array$branchFactor));
-var elm$core$Elm$JsArray$empty = _JsArray_empty;
-var elm$core$Array$empty = A4(elm$core$Array$Array_elm_builtin, 0, elm$core$Array$shiftStep, elm$core$Elm$JsArray$empty, elm$core$Elm$JsArray$empty);
-var elm$core$Array$Leaf = function (a) {
-	return {$: 'Leaf', a: a};
-};
-var elm$core$Array$SubTree = function (a) {
-	return {$: 'SubTree', a: a};
-};
-var elm$core$Elm$JsArray$initializeFromList = _JsArray_initializeFromList;
 var elm$core$Array$compressNodes = F2(
 	function (nodes, acc) {
 		compressNodes:
@@ -4771,11 +4534,19 @@ var elm$core$Array$treeFromBuilder = F2(
 			}
 		}
 	});
+var elm$core$Basics$add = _Basics_add;
+var elm$core$Basics$apL = F2(
+	function (f, x) {
+		return f(x);
+	});
 var elm$core$Basics$floor = _Basics_floor;
+var elm$core$Basics$gt = _Utils_gt;
 var elm$core$Basics$max = F2(
 	function (x, y) {
 		return (_Utils_cmp(x, y) > 0) ? x : y;
 	});
+var elm$core$Basics$mul = _Basics_mul;
+var elm$core$Basics$sub = _Basics_sub;
 var elm$core$Elm$JsArray$length = _JsArray_length;
 var elm$core$Array$builderToArray = F2(
 	function (reverseNodeList, builder) {
@@ -4800,8 +4571,8 @@ var elm$core$Array$builderToArray = F2(
 				builder.tail);
 		}
 	});
-var elm$core$Basics$False = {$: 'False'};
 var elm$core$Basics$idiv = _Basics_idiv;
+var elm$core$Basics$lt = _Utils_lt;
 var elm$core$Elm$JsArray$initialize = _JsArray_initialize;
 var elm$core$Array$initializeHelp = F5(
 	function (fn, fromIndex, len, nodeList, tail) {
@@ -4829,6 +4600,7 @@ var elm$core$Array$initializeHelp = F5(
 			}
 		}
 	});
+var elm$core$Basics$le = _Utils_le;
 var elm$core$Basics$remainderBy = _Basics_remainderBy;
 var elm$core$Array$initialize = F2(
 	function (len, fn) {
@@ -4844,20 +4616,11 @@ var elm$core$Array$initialize = F2(
 var elm$core$Maybe$Just = function (a) {
 	return {$: 'Just', a: a};
 };
-var elm$core$Maybe$Nothing = {$: 'Nothing'};
 var elm$core$Result$Err = function (a) {
 	return {$: 'Err', a: a};
 };
 var elm$core$Result$Ok = function (a) {
 	return {$: 'Ok', a: a};
-};
-var elm$core$Basics$True = {$: 'True'};
-var elm$core$Result$isOk = function (result) {
-	if (result.$ === 'Ok') {
-		return true;
-	} else {
-		return false;
-	}
 };
 var elm$json$Json$Decode$Failure = F2(
 	function (a, b) {
@@ -5064,157 +4827,194 @@ var elm$json$Json$Decode$errorToStringHelp = F2(
 			}
 		}
 	});
-var elm$json$Json$Encode$float = _Json_wrap;
-var elm$json$Json$Encode$list = F2(
-	function (func, entries) {
-		return _Json_wrap(
-			A3(
-				elm$core$List$foldl,
-				_Json_addEntry(func),
-				_Json_emptyArray(_Utils_Tuple0),
-				entries));
-	});
-var elm$json$Json$Encode$object = function (pairs) {
-	return _Json_wrap(
-		A3(
-			elm$core$List$foldl,
-			F2(
-				function (_n0, obj) {
-					var k = _n0.a;
-					var v = _n0.b;
-					return A3(_Json_addField, k, v, obj);
-				}),
-			_Json_emptyObject(_Utils_Tuple0),
-			pairs));
+var elm$core$Platform$Cmd$batch = _Platform_batch;
+var elm$core$Platform$Cmd$none = elm$core$Platform$Cmd$batch(_List_Nil);
+var author$project$Main$init = function (floatSeed) {
+	return _Utils_Tuple2(
+		{color: avh4$elm_color$Color$lightBlue, drawingPointer: elm$core$Maybe$Nothing, frames: 0, pending: elm$core$Array$empty, size: 20, toDraw: _List_Nil},
+		elm$core$Platform$Cmd$none);
 };
-var elm$json$Json$Encode$string = _Json_wrap;
-var joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn = F2(
-	function (name, args) {
-		return elm$json$Json$Encode$object(
-			_List_fromArray(
-				[
-					_Utils_Tuple2(
-					'type',
-					elm$json$Json$Encode$string('function')),
-					_Utils_Tuple2(
-					'name',
-					elm$json$Json$Encode$string(name)),
-					_Utils_Tuple2(
-					'args',
-					A2(elm$json$Json$Encode$list, elm$core$Basics$identity, args))
-				]));
-	});
-var joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$rotate = function (angle) {
-	return A2(
-		joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn,
-		'rotate',
-		_List_fromArray(
-			[
-				elm$json$Json$Encode$float(angle)
-			]));
+var author$project$Main$AnimationFrame = function (a) {
+	return {$: 'AnimationFrame', a: a};
 };
-var joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$scale = F2(
-	function (x, y) {
-		return A2(
-			joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn,
-			'scale',
-			_List_fromArray(
-				[
-					elm$json$Json$Encode$float(x),
-					elm$json$Json$Encode$float(y)
-				]));
+var elm$browser$Browser$AnimationManager$Delta = function (a) {
+	return {$: 'Delta', a: a};
+};
+var elm$browser$Browser$AnimationManager$State = F3(
+	function (subs, request, oldTime) {
+		return {oldTime: oldTime, request: request, subs: subs};
 	});
-var joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$transform = F6(
-	function (a, b, c, d, e, f) {
-		return A2(
-			joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn,
-			'transform',
-			_List_fromArray(
-				[
-					elm$json$Json$Encode$float(a),
-					elm$json$Json$Encode$float(b),
-					elm$json$Json$Encode$float(c),
-					elm$json$Json$Encode$float(d),
-					elm$json$Json$Encode$float(e),
-					elm$json$Json$Encode$float(f)
-				]));
-	});
-var joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$translate = F2(
-	function (x, y) {
-		return A2(
-			joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn,
-			'translate',
-			_List_fromArray(
-				[
-					elm$json$Json$Encode$float(x),
-					elm$json$Json$Encode$float(y)
-				]));
-	});
-var joakin$elm_canvas$Canvas$Settings$Advanced$transform = function (transforms) {
-	return joakin$elm_canvas$Canvas$Internal$Canvas$SettingCommands(
-		A2(
-			elm$core$List$map,
-			function (t) {
-				switch (t.$) {
-					case 'Rotate':
-						var angle = t.a;
-						return joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$rotate(angle);
-					case 'Scale':
-						var x = t.a;
-						var y = t.b;
-						return A2(joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$scale, x, y);
-					case 'Translate':
-						var x = t.a;
-						var y = t.b;
-						return A2(joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$translate, x, y);
-					default:
-						var m11 = t.a.m11;
-						var m12 = t.a.m12;
-						var m21 = t.a.m21;
-						var m22 = t.a.m22;
-						var dx = t.a.dx;
-						var dy = t.a.dy;
-						return A6(joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$transform, m11, m12, m21, m22, dx, dy);
+var elm$core$Task$succeed = _Scheduler_succeed;
+var elm$browser$Browser$AnimationManager$init = elm$core$Task$succeed(
+	A3(elm$browser$Browser$AnimationManager$State, _List_Nil, elm$core$Maybe$Nothing, 0));
+var elm$browser$Browser$External = function (a) {
+	return {$: 'External', a: a};
+};
+var elm$browser$Browser$Internal = function (a) {
+	return {$: 'Internal', a: a};
+};
+var elm$browser$Browser$Dom$NotFound = function (a) {
+	return {$: 'NotFound', a: a};
+};
+var elm$core$Basics$never = function (_n0) {
+	never:
+	while (true) {
+		var nvr = _n0.a;
+		var $temp$_n0 = nvr;
+		_n0 = $temp$_n0;
+		continue never;
+	}
+};
+var elm$core$Basics$identity = function (x) {
+	return x;
+};
+var elm$core$Task$Perform = function (a) {
+	return {$: 'Perform', a: a};
+};
+var elm$core$Task$init = elm$core$Task$succeed(_Utils_Tuple0);
+var elm$core$List$foldrHelper = F4(
+	function (fn, acc, ctr, ls) {
+		if (!ls.b) {
+			return acc;
+		} else {
+			var a = ls.a;
+			var r1 = ls.b;
+			if (!r1.b) {
+				return A2(fn, a, acc);
+			} else {
+				var b = r1.a;
+				var r2 = r1.b;
+				if (!r2.b) {
+					return A2(
+						fn,
+						a,
+						A2(fn, b, acc));
+				} else {
+					var c = r2.a;
+					var r3 = r2.b;
+					if (!r3.b) {
+						return A2(
+							fn,
+							a,
+							A2(
+								fn,
+								b,
+								A2(fn, c, acc)));
+					} else {
+						var d = r3.a;
+						var r4 = r3.b;
+						var res = (ctr > 500) ? A3(
+							elm$core$List$foldl,
+							fn,
+							acc,
+							elm$core$List$reverse(r4)) : A4(elm$core$List$foldrHelper, fn, acc, ctr + 1, r4);
+						return A2(
+							fn,
+							a,
+							A2(
+								fn,
+								b,
+								A2(
+									fn,
+									c,
+									A2(fn, d, res))));
+					}
 				}
-			},
-			transforms));
-};
-var joakin$elm_canvas$Canvas$Settings$Advanced$Translate = F2(
-	function (a, b) {
-		return {$: 'Translate', a: a, b: b};
+			}
+		}
 	});
-var joakin$elm_canvas$Canvas$Settings$Advanced$translate = joakin$elm_canvas$Canvas$Settings$Advanced$Translate;
-var author$project$Main$render = function (count) {
-	var size = author$project$Main$width / 3;
-	var x = -(size / 2);
-	var y = -(size / 2);
-	return A2(
-		joakin$elm_canvas$Canvas$shapes,
-		_List_fromArray(
-			[
-				joakin$elm_canvas$Canvas$Settings$Advanced$transform(
-				_List_fromArray(
-					[
-						A2(joakin$elm_canvas$Canvas$Settings$Advanced$translate, author$project$Main$centerX, author$project$Main$centerY),
-						joakin$elm_canvas$Canvas$Settings$Advanced$rotate(
-						elm$core$Basics$degrees(count * 3))
-					])),
-				joakin$elm_canvas$Canvas$Settings$fill(
-				A3(
-					avh4$elm_color$Color$hsl,
-					elm$core$Basics$degrees(count / 4),
-					0.3,
-					0.7))
-			]),
-		_List_fromArray(
-			[
-				A3(
-				joakin$elm_canvas$Canvas$rect,
-				_Utils_Tuple2(x, y),
-				size,
-				size)
-			]));
+var elm$core$List$foldr = F3(
+	function (fn, acc, ls) {
+		return A4(elm$core$List$foldrHelper, fn, acc, 0, ls);
+	});
+var elm$core$List$map = F2(
+	function (f, xs) {
+		return A3(
+			elm$core$List$foldr,
+			F2(
+				function (x, acc) {
+					return A2(
+						elm$core$List$cons,
+						f(x),
+						acc);
+				}),
+			_List_Nil,
+			xs);
+	});
+var elm$core$Task$andThen = _Scheduler_andThen;
+var elm$core$Task$map = F2(
+	function (func, taskA) {
+		return A2(
+			elm$core$Task$andThen,
+			function (a) {
+				return elm$core$Task$succeed(
+					func(a));
+			},
+			taskA);
+	});
+var elm$core$Task$map2 = F3(
+	function (func, taskA, taskB) {
+		return A2(
+			elm$core$Task$andThen,
+			function (a) {
+				return A2(
+					elm$core$Task$andThen,
+					function (b) {
+						return elm$core$Task$succeed(
+							A2(func, a, b));
+					},
+					taskB);
+			},
+			taskA);
+	});
+var elm$core$Task$sequence = function (tasks) {
+	return A3(
+		elm$core$List$foldr,
+		elm$core$Task$map2(elm$core$List$cons),
+		elm$core$Task$succeed(_List_Nil),
+		tasks);
 };
+var elm$core$Platform$sendToApp = _Platform_sendToApp;
+var elm$core$Task$spawnCmd = F2(
+	function (router, _n0) {
+		var task = _n0.a;
+		return _Scheduler_spawn(
+			A2(
+				elm$core$Task$andThen,
+				elm$core$Platform$sendToApp(router),
+				task));
+	});
+var elm$core$Task$onEffects = F3(
+	function (router, commands, state) {
+		return A2(
+			elm$core$Task$map,
+			function (_n0) {
+				return _Utils_Tuple0;
+			},
+			elm$core$Task$sequence(
+				A2(
+					elm$core$List$map,
+					elm$core$Task$spawnCmd(router),
+					commands)));
+	});
+var elm$core$Task$onSelfMsg = F3(
+	function (_n0, _n1, _n2) {
+		return elm$core$Task$succeed(_Utils_Tuple0);
+	});
+var elm$core$Task$cmdMap = F2(
+	function (tagger, _n0) {
+		var task = _n0.a;
+		return elm$core$Task$Perform(
+			A2(elm$core$Task$map, tagger, task));
+	});
+_Platform_effectManagers['Task'] = _Platform_createManager(elm$core$Task$init, elm$core$Task$onEffects, elm$core$Task$onSelfMsg, elm$core$Task$cmdMap);
+var elm$core$Task$command = _Platform_leaf('Task');
+var elm$core$Task$perform = F2(
+	function (toMessage, task) {
+		return elm$core$Task$command(
+			elm$core$Task$Perform(
+				A2(elm$core$Task$map, toMessage, task)));
+	});
 var elm$json$Json$Decode$map = _Json_map1;
 var elm$json$Json$Decode$map2 = _Json_map2;
 var elm$json$Json$Decode$succeed = _Json_succeed;
@@ -5230,9 +5030,1306 @@ var elm$virtual_dom$VirtualDom$toHandlerInt = function (handler) {
 			return 3;
 	}
 };
+var elm$core$String$length = _String_length;
+var elm$core$String$slice = _String_slice;
+var elm$core$String$dropLeft = F2(
+	function (n, string) {
+		return (n < 1) ? string : A3(
+			elm$core$String$slice,
+			n,
+			elm$core$String$length(string),
+			string);
+	});
+var elm$core$String$startsWith = _String_startsWith;
+var elm$url$Url$Http = {$: 'Http'};
+var elm$url$Url$Https = {$: 'Https'};
+var elm$core$String$indexes = _String_indexes;
+var elm$core$String$isEmpty = function (string) {
+	return string === '';
+};
+var elm$core$String$left = F2(
+	function (n, string) {
+		return (n < 1) ? '' : A3(elm$core$String$slice, 0, n, string);
+	});
+var elm$core$String$contains = _String_contains;
+var elm$core$String$toInt = _String_toInt;
+var elm$url$Url$Url = F6(
+	function (protocol, host, port_, path, query, fragment) {
+		return {fragment: fragment, host: host, path: path, port_: port_, protocol: protocol, query: query};
+	});
+var elm$url$Url$chompBeforePath = F5(
+	function (protocol, path, params, frag, str) {
+		if (elm$core$String$isEmpty(str) || A2(elm$core$String$contains, '@', str)) {
+			return elm$core$Maybe$Nothing;
+		} else {
+			var _n0 = A2(elm$core$String$indexes, ':', str);
+			if (!_n0.b) {
+				return elm$core$Maybe$Just(
+					A6(elm$url$Url$Url, protocol, str, elm$core$Maybe$Nothing, path, params, frag));
+			} else {
+				if (!_n0.b.b) {
+					var i = _n0.a;
+					var _n1 = elm$core$String$toInt(
+						A2(elm$core$String$dropLeft, i + 1, str));
+					if (_n1.$ === 'Nothing') {
+						return elm$core$Maybe$Nothing;
+					} else {
+						var port_ = _n1;
+						return elm$core$Maybe$Just(
+							A6(
+								elm$url$Url$Url,
+								protocol,
+								A2(elm$core$String$left, i, str),
+								port_,
+								path,
+								params,
+								frag));
+					}
+				} else {
+					return elm$core$Maybe$Nothing;
+				}
+			}
+		}
+	});
+var elm$url$Url$chompBeforeQuery = F4(
+	function (protocol, params, frag, str) {
+		if (elm$core$String$isEmpty(str)) {
+			return elm$core$Maybe$Nothing;
+		} else {
+			var _n0 = A2(elm$core$String$indexes, '/', str);
+			if (!_n0.b) {
+				return A5(elm$url$Url$chompBeforePath, protocol, '/', params, frag, str);
+			} else {
+				var i = _n0.a;
+				return A5(
+					elm$url$Url$chompBeforePath,
+					protocol,
+					A2(elm$core$String$dropLeft, i, str),
+					params,
+					frag,
+					A2(elm$core$String$left, i, str));
+			}
+		}
+	});
+var elm$url$Url$chompBeforeFragment = F3(
+	function (protocol, frag, str) {
+		if (elm$core$String$isEmpty(str)) {
+			return elm$core$Maybe$Nothing;
+		} else {
+			var _n0 = A2(elm$core$String$indexes, '?', str);
+			if (!_n0.b) {
+				return A4(elm$url$Url$chompBeforeQuery, protocol, elm$core$Maybe$Nothing, frag, str);
+			} else {
+				var i = _n0.a;
+				return A4(
+					elm$url$Url$chompBeforeQuery,
+					protocol,
+					elm$core$Maybe$Just(
+						A2(elm$core$String$dropLeft, i + 1, str)),
+					frag,
+					A2(elm$core$String$left, i, str));
+			}
+		}
+	});
+var elm$url$Url$chompAfterProtocol = F2(
+	function (protocol, str) {
+		if (elm$core$String$isEmpty(str)) {
+			return elm$core$Maybe$Nothing;
+		} else {
+			var _n0 = A2(elm$core$String$indexes, '#', str);
+			if (!_n0.b) {
+				return A3(elm$url$Url$chompBeforeFragment, protocol, elm$core$Maybe$Nothing, str);
+			} else {
+				var i = _n0.a;
+				return A3(
+					elm$url$Url$chompBeforeFragment,
+					protocol,
+					elm$core$Maybe$Just(
+						A2(elm$core$String$dropLeft, i + 1, str)),
+					A2(elm$core$String$left, i, str));
+			}
+		}
+	});
+var elm$url$Url$fromString = function (str) {
+	return A2(elm$core$String$startsWith, 'http://', str) ? A2(
+		elm$url$Url$chompAfterProtocol,
+		elm$url$Url$Http,
+		A2(elm$core$String$dropLeft, 7, str)) : (A2(elm$core$String$startsWith, 'https://', str) ? A2(
+		elm$url$Url$chompAfterProtocol,
+		elm$url$Url$Https,
+		A2(elm$core$String$dropLeft, 8, str)) : elm$core$Maybe$Nothing);
+};
+var elm$browser$Browser$AnimationManager$now = _Browser_now(_Utils_Tuple0);
+var elm$browser$Browser$AnimationManager$rAF = _Browser_rAF(_Utils_Tuple0);
+var elm$core$Platform$sendToSelf = _Platform_sendToSelf;
+var elm$core$Process$kill = _Scheduler_kill;
+var elm$core$Process$spawn = _Scheduler_spawn;
+var elm$browser$Browser$AnimationManager$onEffects = F3(
+	function (router, subs, _n0) {
+		var request = _n0.request;
+		var oldTime = _n0.oldTime;
+		var _n1 = _Utils_Tuple2(request, subs);
+		if (_n1.a.$ === 'Nothing') {
+			if (!_n1.b.b) {
+				var _n2 = _n1.a;
+				return elm$browser$Browser$AnimationManager$init;
+			} else {
+				var _n4 = _n1.a;
+				return A2(
+					elm$core$Task$andThen,
+					function (pid) {
+						return A2(
+							elm$core$Task$andThen,
+							function (time) {
+								return elm$core$Task$succeed(
+									A3(
+										elm$browser$Browser$AnimationManager$State,
+										subs,
+										elm$core$Maybe$Just(pid),
+										time));
+							},
+							elm$browser$Browser$AnimationManager$now);
+					},
+					elm$core$Process$spawn(
+						A2(
+							elm$core$Task$andThen,
+							elm$core$Platform$sendToSelf(router),
+							elm$browser$Browser$AnimationManager$rAF)));
+			}
+		} else {
+			if (!_n1.b.b) {
+				var pid = _n1.a.a;
+				return A2(
+					elm$core$Task$andThen,
+					function (_n3) {
+						return elm$browser$Browser$AnimationManager$init;
+					},
+					elm$core$Process$kill(pid));
+			} else {
+				return elm$core$Task$succeed(
+					A3(elm$browser$Browser$AnimationManager$State, subs, request, oldTime));
+			}
+		}
+	});
+var elm$time$Time$Posix = function (a) {
+	return {$: 'Posix', a: a};
+};
+var elm$time$Time$millisToPosix = elm$time$Time$Posix;
+var elm$browser$Browser$AnimationManager$onSelfMsg = F3(
+	function (router, newTime, _n0) {
+		var subs = _n0.subs;
+		var oldTime = _n0.oldTime;
+		var send = function (sub) {
+			if (sub.$ === 'Time') {
+				var tagger = sub.a;
+				return A2(
+					elm$core$Platform$sendToApp,
+					router,
+					tagger(
+						elm$time$Time$millisToPosix(newTime)));
+			} else {
+				var tagger = sub.a;
+				return A2(
+					elm$core$Platform$sendToApp,
+					router,
+					tagger(newTime - oldTime));
+			}
+		};
+		return A2(
+			elm$core$Task$andThen,
+			function (pid) {
+				return A2(
+					elm$core$Task$andThen,
+					function (_n1) {
+						return elm$core$Task$succeed(
+							A3(
+								elm$browser$Browser$AnimationManager$State,
+								subs,
+								elm$core$Maybe$Just(pid),
+								newTime));
+					},
+					elm$core$Task$sequence(
+						A2(elm$core$List$map, send, subs)));
+			},
+			elm$core$Process$spawn(
+				A2(
+					elm$core$Task$andThen,
+					elm$core$Platform$sendToSelf(router),
+					elm$browser$Browser$AnimationManager$rAF)));
+	});
+var elm$browser$Browser$AnimationManager$Time = function (a) {
+	return {$: 'Time', a: a};
+};
+var elm$core$Basics$composeL = F3(
+	function (g, f, x) {
+		return g(
+			f(x));
+	});
+var elm$browser$Browser$AnimationManager$subMap = F2(
+	function (func, sub) {
+		if (sub.$ === 'Time') {
+			var tagger = sub.a;
+			return elm$browser$Browser$AnimationManager$Time(
+				A2(elm$core$Basics$composeL, func, tagger));
+		} else {
+			var tagger = sub.a;
+			return elm$browser$Browser$AnimationManager$Delta(
+				A2(elm$core$Basics$composeL, func, tagger));
+		}
+	});
+_Platform_effectManagers['Browser.AnimationManager'] = _Platform_createManager(elm$browser$Browser$AnimationManager$init, elm$browser$Browser$AnimationManager$onEffects, elm$browser$Browser$AnimationManager$onSelfMsg, 0, elm$browser$Browser$AnimationManager$subMap);
+var elm$browser$Browser$AnimationManager$subscription = _Platform_leaf('Browser.AnimationManager');
+var elm$browser$Browser$AnimationManager$onAnimationFrameDelta = function (tagger) {
+	return elm$browser$Browser$AnimationManager$subscription(
+		elm$browser$Browser$AnimationManager$Delta(tagger));
+};
+var elm$browser$Browser$Events$onAnimationFrameDelta = elm$browser$Browser$AnimationManager$onAnimationFrameDelta;
+var author$project$Main$subscriptions = function (model) {
+	return elm$browser$Browser$Events$onAnimationFrameDelta(author$project$Main$AnimationFrame);
+};
+var author$project$Main$h = 500;
+var author$project$Main$w = 500;
+var avh4$elm_color$Color$white = A4(avh4$elm_color$Color$RgbaSpace, 255 / 255, 255 / 255, 255 / 255, 1.0);
+var joakin$elm_canvas$Canvas$Internal$Canvas$Rect = F3(
+	function (a, b, c) {
+		return {$: 'Rect', a: a, b: b, c: c};
+	});
+var joakin$elm_canvas$Canvas$rect = F3(
+	function (pos, width, height) {
+		return A3(joakin$elm_canvas$Canvas$Internal$Canvas$Rect, pos, width, height);
+	});
+var joakin$elm_canvas$Canvas$Renderable = function (a) {
+	return {$: 'Renderable', a: a};
+};
+var joakin$elm_canvas$Canvas$Internal$Canvas$Fill = function (a) {
+	return {$: 'Fill', a: a};
+};
+var joakin$elm_canvas$Canvas$Internal$Canvas$FillAndStroke = F2(
+	function (a, b) {
+		return {$: 'FillAndStroke', a: a, b: b};
+	});
+var joakin$elm_canvas$Canvas$Internal$Canvas$Stroke = function (a) {
+	return {$: 'Stroke', a: a};
+};
+var joakin$elm_canvas$Canvas$mergeDrawOp = F2(
+	function (op1, op2) {
+		var _n0 = _Utils_Tuple2(op1, op2);
+		_n0$7:
+		while (true) {
+			switch (_n0.b.$) {
+				case 'FillAndStroke':
+					var _n1 = _n0.b;
+					var c = _n1.a;
+					var sc = _n1.b;
+					return A2(joakin$elm_canvas$Canvas$Internal$Canvas$FillAndStroke, c, sc);
+				case 'Fill':
+					switch (_n0.a.$) {
+						case 'Fill':
+							var c = _n0.b.a;
+							return joakin$elm_canvas$Canvas$Internal$Canvas$Fill(c);
+						case 'Stroke':
+							var c1 = _n0.a.a;
+							var c2 = _n0.b.a;
+							return A2(joakin$elm_canvas$Canvas$Internal$Canvas$FillAndStroke, c2, c1);
+						case 'FillAndStroke':
+							var _n2 = _n0.a;
+							var c = _n2.a;
+							var sc = _n2.b;
+							var c2 = _n0.b.a;
+							return A2(joakin$elm_canvas$Canvas$Internal$Canvas$FillAndStroke, c2, sc);
+						default:
+							break _n0$7;
+					}
+				case 'Stroke':
+					switch (_n0.a.$) {
+						case 'Stroke':
+							var c = _n0.b.a;
+							return joakin$elm_canvas$Canvas$Internal$Canvas$Stroke(c);
+						case 'Fill':
+							var c1 = _n0.a.a;
+							var c2 = _n0.b.a;
+							return A2(joakin$elm_canvas$Canvas$Internal$Canvas$FillAndStroke, c1, c2);
+						case 'FillAndStroke':
+							var _n3 = _n0.a;
+							var c = _n3.a;
+							var sc = _n3.b;
+							var sc2 = _n0.b.a;
+							return A2(joakin$elm_canvas$Canvas$Internal$Canvas$FillAndStroke, c, sc2);
+						default:
+							break _n0$7;
+					}
+				default:
+					if (_n0.a.$ === 'NotSpecified') {
+						break _n0$7;
+					} else {
+						var whatever = _n0.a;
+						var _n5 = _n0.b;
+						return whatever;
+					}
+			}
+		}
+		var _n4 = _n0.a;
+		var whatever = _n0.b;
+		return whatever;
+	});
+var joakin$elm_canvas$Canvas$addSettingsToRenderable = F2(
+	function (settings, renderable) {
+		var addSetting = F2(
+			function (setting, _n1) {
+				var r = _n1.a;
+				return joakin$elm_canvas$Canvas$Renderable(
+					function () {
+						switch (setting.$) {
+							case 'SettingCommand':
+								var cmd = setting.a;
+								return _Utils_update(
+									r,
+									{
+										commands: A2(elm$core$List$cons, cmd, r.commands)
+									});
+							case 'SettingCommands':
+								var cmds = setting.a;
+								return _Utils_update(
+									r,
+									{
+										commands: A3(elm$core$List$foldl, elm$core$List$cons, r.commands, cmds)
+									});
+							case 'SettingUpdateDrawable':
+								var f = setting.a;
+								return _Utils_update(
+									r,
+									{
+										drawable: f(r.drawable)
+									});
+							default:
+								var op = setting.a;
+								return _Utils_update(
+									r,
+									{
+										drawOp: A2(joakin$elm_canvas$Canvas$mergeDrawOp, r.drawOp, op)
+									});
+						}
+					}());
+			});
+		return A3(elm$core$List$foldl, addSetting, renderable, settings);
+	});
+var joakin$elm_canvas$Canvas$Internal$Canvas$DrawableShapes = function (a) {
+	return {$: 'DrawableShapes', a: a};
+};
+var joakin$elm_canvas$Canvas$Internal$Canvas$NotSpecified = {$: 'NotSpecified'};
+var joakin$elm_canvas$Canvas$shapes = F2(
+	function (settings, ss) {
+		return A2(
+			joakin$elm_canvas$Canvas$addSettingsToRenderable,
+			settings,
+			joakin$elm_canvas$Canvas$Renderable(
+				{
+					commands: _List_Nil,
+					drawOp: joakin$elm_canvas$Canvas$Internal$Canvas$NotSpecified,
+					drawable: joakin$elm_canvas$Canvas$Internal$Canvas$DrawableShapes(ss)
+				}));
+	});
+var joakin$elm_canvas$Canvas$Internal$Canvas$SettingDrawOp = function (a) {
+	return {$: 'SettingDrawOp', a: a};
+};
+var joakin$elm_canvas$Canvas$Settings$fill = function (color) {
+	return joakin$elm_canvas$Canvas$Internal$Canvas$SettingDrawOp(
+		joakin$elm_canvas$Canvas$Internal$Canvas$Fill(color));
+};
+var author$project$Main$clearScreen = _List_fromArray(
+	[
+		A2(
+		joakin$elm_canvas$Canvas$shapes,
+		_List_fromArray(
+			[
+				joakin$elm_canvas$Canvas$Settings$fill(avh4$elm_color$Color$white)
+			]),
+		_List_fromArray(
+			[
+				A3(
+				joakin$elm_canvas$Canvas$rect,
+				_Utils_Tuple2(0, 0),
+				author$project$Main$w,
+				author$project$Main$h)
+			]))
+	]);
+var author$project$Main$controlPoint = F2(
+	function (_n0, _n1) {
+		var x1 = _n0.a;
+		var y1 = _n0.b;
+		var x2 = _n1.a;
+		var y2 = _n1.b;
+		return _Utils_Tuple2(x1 + ((x2 - x1) / 2), y1 + ((y2 - y1) / 2));
+	});
+var avh4$elm_color$Color$rgba = F4(
+	function (r, g, b, a) {
+		return A4(avh4$elm_color$Color$RgbaSpace, r, g, b, a);
+	});
+var avh4$elm_color$Color$toRgba = function (_n0) {
+	var r = _n0.a;
+	var g = _n0.b;
+	var b = _n0.c;
+	var a = _n0.d;
+	return {alpha: a, blue: b, green: g, red: r};
+};
+var author$project$Main$getShadowColor = function (color) {
+	var _n0 = avh4$elm_color$Color$toRgba(color);
+	var red = _n0.red;
+	var green = _n0.green;
+	var blue = _n0.blue;
+	return A4(avh4$elm_color$Color$rgba, red, green, blue, 0.2);
+};
+var joakin$elm_canvas$Canvas$Settings$stroke = function (color) {
+	return joakin$elm_canvas$Canvas$Internal$Canvas$SettingDrawOp(
+		joakin$elm_canvas$Canvas$Internal$Canvas$Stroke(color));
+};
+var joakin$elm_canvas$Canvas$Internal$Canvas$SettingCommands = function (a) {
+	return {$: 'SettingCommands', a: a};
+};
+var elm$json$Json$Encode$float = _Json_wrap;
+var elm$json$Json$Encode$object = function (pairs) {
+	return _Json_wrap(
+		A3(
+			elm$core$List$foldl,
+			F2(
+				function (_n0, obj) {
+					var k = _n0.a;
+					var v = _n0.b;
+					return A3(_Json_addField, k, v, obj);
+				}),
+			_Json_emptyObject(_Utils_Tuple0),
+			pairs));
+};
+var elm$json$Json$Encode$string = _Json_wrap;
+var joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$field = F2(
+	function (name, value) {
+		return elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					elm$json$Json$Encode$string('field')),
+					_Utils_Tuple2(
+					'name',
+					elm$json$Json$Encode$string(name)),
+					_Utils_Tuple2('value', value)
+				]));
+	});
+var joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$shadowBlur = function (value) {
+	return A2(
+		joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$field,
+		'shadowBlur',
+		elm$json$Json$Encode$float(value));
+};
+var elm$core$Basics$round = _Basics_round;
+var elm$core$String$concat = function (strings) {
+	return A2(elm$core$String$join, '', strings);
+};
+var elm$core$String$fromFloat = _String_fromNumber;
+var avh4$elm_color$Color$toCssString = function (_n0) {
+	var r = _n0.a;
+	var g = _n0.b;
+	var b = _n0.c;
+	var a = _n0.d;
+	var roundTo = function (x) {
+		return elm$core$Basics$round(x * 1000) / 1000;
+	};
+	var pct = function (x) {
+		return elm$core$Basics$round(x * 10000) / 100;
+	};
+	return elm$core$String$concat(
+		_List_fromArray(
+			[
+				'rgba(',
+				elm$core$String$fromFloat(
+				pct(r)),
+				'%,',
+				elm$core$String$fromFloat(
+				pct(g)),
+				'%,',
+				elm$core$String$fromFloat(
+				pct(b)),
+				'%,',
+				elm$core$String$fromFloat(
+				roundTo(a)),
+				')'
+			]));
+};
+var joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$shadowColor = function (color) {
+	return A2(
+		joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$field,
+		'shadowColor',
+		elm$json$Json$Encode$string(
+			avh4$elm_color$Color$toCssString(color)));
+};
+var joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$shadowOffsetX = function (value) {
+	return A2(
+		joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$field,
+		'shadowOffsetX',
+		elm$json$Json$Encode$float(value));
+};
+var joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$shadowOffsetY = function (value) {
+	return A2(
+		joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$field,
+		'shadowOffsetY',
+		elm$json$Json$Encode$float(value));
+};
+var joakin$elm_canvas$Canvas$Settings$Advanced$shadow = function (_n0) {
+	var blur = _n0.blur;
+	var color = _n0.color;
+	var offset = _n0.offset;
+	var _n1 = offset;
+	var x = _n1.a;
+	var y = _n1.b;
+	return joakin$elm_canvas$Canvas$Internal$Canvas$SettingCommands(
+		_List_fromArray(
+			[
+				joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$shadowBlur(blur),
+				joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$shadowColor(color),
+				joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$shadowOffsetX(x),
+				joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$shadowOffsetY(y)
+			]));
+};
+var joakin$elm_canvas$Canvas$Settings$Line$RoundCap = {$: 'RoundCap'};
+var joakin$elm_canvas$Canvas$Settings$Line$RoundJoin = {$: 'RoundJoin'};
+var joakin$elm_canvas$Canvas$Internal$Canvas$SettingCommand = function (a) {
+	return {$: 'SettingCommand', a: a};
+};
+var joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$lineCap = function (cap) {
+	return A2(
+		joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$field,
+		'lineCap',
+		elm$json$Json$Encode$string(cap));
+};
+var joakin$elm_canvas$Canvas$Settings$Line$lineCapToString = function (cap) {
+	switch (cap.$) {
+		case 'ButtCap':
+			return 'butt';
+		case 'RoundCap':
+			return 'round';
+		default:
+			return 'square';
+	}
+};
+var joakin$elm_canvas$Canvas$Settings$Line$lineCap = function (cap) {
+	return joakin$elm_canvas$Canvas$Internal$Canvas$SettingCommand(
+		joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$lineCap(
+			joakin$elm_canvas$Canvas$Settings$Line$lineCapToString(cap)));
+};
+var joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$lineJoin = function (join) {
+	return A2(
+		joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$field,
+		'lineJoin',
+		elm$json$Json$Encode$string(join));
+};
+var joakin$elm_canvas$Canvas$Settings$Line$lineJoinToString = function (join) {
+	switch (join.$) {
+		case 'BevelJoin':
+			return 'bevel';
+		case 'RoundJoin':
+			return 'round';
+		default:
+			return 'miter';
+	}
+};
+var joakin$elm_canvas$Canvas$Settings$Line$lineJoin = function (join) {
+	return joakin$elm_canvas$Canvas$Internal$Canvas$SettingCommand(
+		joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$lineJoin(
+			joakin$elm_canvas$Canvas$Settings$Line$lineJoinToString(join)));
+};
+var joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$lineWidth = function (value) {
+	return A2(
+		joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$field,
+		'lineWidth',
+		elm$json$Json$Encode$float(value));
+};
+var joakin$elm_canvas$Canvas$Settings$Line$lineWidth = function (width) {
+	return joakin$elm_canvas$Canvas$Internal$Canvas$SettingCommand(
+		joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$lineWidth(width));
+};
+var author$project$Main$drawLine = F2(
+	function (_n0, line) {
+		var color = _n0.color;
+		var size = _n0.size;
+		return A2(
+			joakin$elm_canvas$Canvas$shapes,
+			_List_fromArray(
+				[
+					joakin$elm_canvas$Canvas$Settings$Line$lineCap(joakin$elm_canvas$Canvas$Settings$Line$RoundCap),
+					joakin$elm_canvas$Canvas$Settings$Line$lineJoin(joakin$elm_canvas$Canvas$Settings$Line$RoundJoin),
+					joakin$elm_canvas$Canvas$Settings$Line$lineWidth(size),
+					joakin$elm_canvas$Canvas$Settings$Advanced$shadow(
+					{
+						blur: 10,
+						color: author$project$Main$getShadowColor(color),
+						offset: _Utils_Tuple2(0, 0)
+					}),
+					joakin$elm_canvas$Canvas$Settings$stroke(color)
+				]),
+			line);
+	});
+var elm$core$Bitwise$shiftRightZfBy = _Bitwise_shiftRightZfBy;
+var elm$core$Array$bitMask = 4294967295 >>> (32 - elm$core$Array$shiftStep);
+var elm$core$Basics$ge = _Utils_ge;
+var elm$core$Bitwise$and = _Bitwise_and;
+var elm$core$Elm$JsArray$push = _JsArray_push;
+var elm$core$Elm$JsArray$singleton = _JsArray_singleton;
+var elm$core$Elm$JsArray$unsafeGet = _JsArray_unsafeGet;
+var elm$core$Elm$JsArray$unsafeSet = _JsArray_unsafeSet;
+var elm$core$Array$insertTailInTree = F4(
+	function (shift, index, tail, tree) {
+		var pos = elm$core$Array$bitMask & (index >>> shift);
+		if (_Utils_cmp(
+			pos,
+			elm$core$Elm$JsArray$length(tree)) > -1) {
+			if (shift === 5) {
+				return A2(
+					elm$core$Elm$JsArray$push,
+					elm$core$Array$Leaf(tail),
+					tree);
+			} else {
+				var newSub = elm$core$Array$SubTree(
+					A4(elm$core$Array$insertTailInTree, shift - elm$core$Array$shiftStep, index, tail, elm$core$Elm$JsArray$empty));
+				return A2(elm$core$Elm$JsArray$push, newSub, tree);
+			}
+		} else {
+			var value = A2(elm$core$Elm$JsArray$unsafeGet, pos, tree);
+			if (value.$ === 'SubTree') {
+				var subTree = value.a;
+				var newSub = elm$core$Array$SubTree(
+					A4(elm$core$Array$insertTailInTree, shift - elm$core$Array$shiftStep, index, tail, subTree));
+				return A3(elm$core$Elm$JsArray$unsafeSet, pos, newSub, tree);
+			} else {
+				var newSub = elm$core$Array$SubTree(
+					A4(
+						elm$core$Array$insertTailInTree,
+						shift - elm$core$Array$shiftStep,
+						index,
+						tail,
+						elm$core$Elm$JsArray$singleton(value)));
+				return A3(elm$core$Elm$JsArray$unsafeSet, pos, newSub, tree);
+			}
+		}
+	});
+var elm$core$Bitwise$shiftLeftBy = _Bitwise_shiftLeftBy;
+var elm$core$Array$unsafeReplaceTail = F2(
+	function (newTail, _n0) {
+		var len = _n0.a;
+		var startShift = _n0.b;
+		var tree = _n0.c;
+		var tail = _n0.d;
+		var originalTailLen = elm$core$Elm$JsArray$length(tail);
+		var newTailLen = elm$core$Elm$JsArray$length(newTail);
+		var newArrayLen = len + (newTailLen - originalTailLen);
+		if (_Utils_eq(newTailLen, elm$core$Array$branchFactor)) {
+			var overflow = _Utils_cmp(newArrayLen >>> elm$core$Array$shiftStep, 1 << startShift) > 0;
+			if (overflow) {
+				var newShift = startShift + elm$core$Array$shiftStep;
+				var newTree = A4(
+					elm$core$Array$insertTailInTree,
+					newShift,
+					len,
+					newTail,
+					elm$core$Elm$JsArray$singleton(
+						elm$core$Array$SubTree(tree)));
+				return A4(elm$core$Array$Array_elm_builtin, newArrayLen, newShift, newTree, elm$core$Elm$JsArray$empty);
+			} else {
+				return A4(
+					elm$core$Array$Array_elm_builtin,
+					newArrayLen,
+					startShift,
+					A4(elm$core$Array$insertTailInTree, startShift, len, newTail, tree),
+					elm$core$Elm$JsArray$empty);
+			}
+		} else {
+			return A4(elm$core$Array$Array_elm_builtin, newArrayLen, startShift, tree, newTail);
+		}
+	});
+var elm$core$Array$push = F2(
+	function (a, array) {
+		var tail = array.d;
+		return A2(
+			elm$core$Array$unsafeReplaceTail,
+			A2(elm$core$Elm$JsArray$push, a, tail),
+			array);
+	});
+var joakin$elm_canvas$Canvas$Internal$Canvas$Path = F2(
+	function (a, b) {
+		return {$: 'Path', a: a, b: b};
+	});
+var joakin$elm_canvas$Canvas$path = F2(
+	function (startingPoint, segments) {
+		return A2(joakin$elm_canvas$Canvas$Internal$Canvas$Path, startingPoint, segments);
+	});
+var joakin$elm_canvas$Canvas$Internal$Canvas$QuadraticCurveTo = F2(
+	function (a, b) {
+		return {$: 'QuadraticCurveTo', a: a, b: b};
+	});
+var joakin$elm_canvas$Canvas$quadraticCurveTo = F2(
+	function (controlPoint, point) {
+		return A2(joakin$elm_canvas$Canvas$Internal$Canvas$QuadraticCurveTo, controlPoint, point);
+	});
+var author$project$Main$drawPoint = F3(
+	function (newPoint, _n0, model) {
+		var previousMidpoint = _n0.previousMidpoint;
+		var lastPoint = _n0.lastPoint;
+		var pending = model.pending;
+		var newMidPoint = A2(author$project$Main$controlPoint, lastPoint, newPoint);
+		return _Utils_update(
+			model,
+			{
+				drawingPointer: elm$core$Maybe$Just(
+					{lastPoint: newPoint, previousMidpoint: newMidPoint}),
+				pending: A2(
+					elm$core$Array$push,
+					A2(
+						author$project$Main$drawLine,
+						model,
+						_List_fromArray(
+							[
+								A2(
+								joakin$elm_canvas$Canvas$path,
+								previousMidpoint,
+								_List_fromArray(
+									[
+										A2(joakin$elm_canvas$Canvas$quadraticCurveTo, lastPoint, newMidPoint)
+									]))
+							])),
+					pending)
+			});
+	});
+var author$project$Main$finalPoint = F3(
+	function (point, _n0, model) {
+		var previousMidpoint = _n0.previousMidpoint;
+		var lastPoint = _n0.lastPoint;
+		var pending = model.pending;
+		return _Utils_update(
+			model,
+			{
+				drawingPointer: elm$core$Maybe$Nothing,
+				pending: A2(
+					elm$core$Array$push,
+					A2(
+						author$project$Main$drawLine,
+						model,
+						_List_fromArray(
+							[
+								A2(
+								joakin$elm_canvas$Canvas$path,
+								previousMidpoint,
+								_List_fromArray(
+									[
+										A2(joakin$elm_canvas$Canvas$quadraticCurveTo, lastPoint, point)
+									]))
+							])),
+					pending)
+			});
+	});
+var author$project$Main$flushPendingToDraw = function (model) {
+	var pending = model.pending;
+	return _Utils_update(
+		model,
+		{
+			pending: elm$core$Array$empty,
+			toDraw: elm$core$Array$toList(pending)
+		});
+};
+var author$project$Main$incFrames = function (model) {
+	var frames = model.frames;
+	return _Utils_update(
+		model,
+		{frames: frames + 1});
+};
+var author$project$Main$initialPoint = F2(
+	function (point, model) {
+		var x = point.a;
+		var y = point.b;
+		return _Utils_update(
+			model,
+			{
+				drawingPointer: elm$core$Maybe$Just(
+					{
+						lastPoint: _Utils_Tuple2(x, y),
+						previousMidpoint: _Utils_Tuple2(x, y)
+					})
+			});
+	});
+var author$project$Main$selectColor = F2(
+	function (color, model) {
+		return _Utils_update(
+			model,
+			{color: color});
+	});
+var author$project$Main$selectSize = F2(
+	function (size, model) {
+		return _Utils_update(
+			model,
+			{size: size});
+	});
+var author$project$Main$update = F2(
+	function (msg, model) {
+		var frames = model.frames;
+		var drawingPointer = model.drawingPointer;
+		var pending = model.pending;
+		var toDraw = model.toDraw;
+		return _Utils_Tuple2(
+			function () {
+				switch (msg.$) {
+					case 'AnimationFrame':
+						var delta = msg.a;
+						return author$project$Main$flushPendingToDraw(
+							author$project$Main$incFrames(model));
+					case 'StartAt':
+						var point = msg.a;
+						return A2(author$project$Main$initialPoint, point, model);
+					case 'MoveAt':
+						var point = msg.a;
+						if (drawingPointer.$ === 'Just') {
+							var pointer = drawingPointer.a;
+							return A3(author$project$Main$drawPoint, point, pointer, model);
+						} else {
+							return model;
+						}
+					case 'EndAt':
+						var point = msg.a;
+						if (drawingPointer.$ === 'Just') {
+							var pointer = drawingPointer.a;
+							return A3(author$project$Main$finalPoint, point, pointer, model);
+						} else {
+							return model;
+						}
+					case 'SelectColor':
+						var color = msg.a;
+						return A2(author$project$Main$selectColor, color, model);
+					case 'SelectSize':
+						var size = msg.a;
+						return A2(author$project$Main$selectSize, size, model);
+					default:
+						return {color: avh4$elm_color$Color$lightBlue, drawingPointer: elm$core$Maybe$Nothing, frames: 0, pending: elm$core$Array$empty, size: 20, toDraw: author$project$Main$clearScreen};
+				}
+			}(),
+			elm$core$Platform$Cmd$none);
+	});
+var author$project$Main$EndAt = function (a) {
+	return {$: 'EndAt', a: a};
+};
+var author$project$Main$MoveAt = function (a) {
+	return {$: 'MoveAt', a: a};
+};
+var author$project$Main$Reset = {$: 'Reset'};
+var author$project$Main$StartAt = function (a) {
+	return {$: 'StartAt', a: a};
+};
 var elm$html$Html$div = _VirtualDom_node('div');
+var author$project$Main$col = function (btns) {
+	return A2(elm$html$Html$div, _List_Nil, btns);
+};
+var author$project$Main$SelectColor = function (a) {
+	return {$: 'SelectColor', a: a};
+};
+var elm$html$Html$button = _VirtualDom_node('button');
 var elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
 var elm$html$Html$Attributes$style = elm$virtual_dom$VirtualDom$style;
+var elm$virtual_dom$VirtualDom$Normal = function (a) {
+	return {$: 'Normal', a: a};
+};
+var elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
+var elm$html$Html$Events$on = F2(
+	function (event, decoder) {
+		return A2(
+			elm$virtual_dom$VirtualDom$on,
+			event,
+			elm$virtual_dom$VirtualDom$Normal(decoder));
+	});
+var elm$html$Html$Events$onClick = function (msg) {
+	return A2(
+		elm$html$Html$Events$on,
+		'click',
+		elm$json$Json$Decode$succeed(msg));
+};
+var author$project$Main$colorButton = F2(
+	function (selectedColor, color) {
+		return A2(
+			elm$html$Html$button,
+			_List_fromArray(
+				[
+					A2(elm$html$Html$Attributes$style, 'border-radius', '50%'),
+					A2(
+					elm$html$Html$Attributes$style,
+					'background-color',
+					avh4$elm_color$Color$toCssString(color)),
+					A2(elm$html$Html$Attributes$style, 'display', 'block'),
+					A2(elm$html$Html$Attributes$style, 'width', '40px'),
+					A2(elm$html$Html$Attributes$style, 'height', '40px'),
+					A2(elm$html$Html$Attributes$style, 'margin', '5px'),
+					A2(elm$html$Html$Attributes$style, 'border', '2px solid white'),
+					A2(
+					elm$html$Html$Attributes$style,
+					'box-shadow',
+					_Utils_eq(selectedColor, color) ? 'rgba(0, 0, 0, 0.4) 0px 4px 6px' : 'none'),
+					A2(elm$html$Html$Attributes$style, 'transition', 'transform 0.2s linear'),
+					A2(elm$html$Html$Attributes$style, 'outline', 'none'),
+					A2(
+					elm$html$Html$Attributes$style,
+					'transform',
+					_Utils_eq(selectedColor, color) ? 'translateY(-6px)' : 'none'),
+					elm$html$Html$Events$onClick(
+					author$project$Main$SelectColor(color))
+				]),
+			_List_Nil);
+	});
+var avh4$elm_color$Color$black = A4(avh4$elm_color$Color$RgbaSpace, 0 / 255, 0 / 255, 0 / 255, 1.0);
+var avh4$elm_color$Color$blue = A4(avh4$elm_color$Color$RgbaSpace, 52 / 255, 101 / 255, 164 / 255, 1.0);
+var avh4$elm_color$Color$brown = A4(avh4$elm_color$Color$RgbaSpace, 193 / 255, 125 / 255, 17 / 255, 1.0);
+var avh4$elm_color$Color$charcoal = A4(avh4$elm_color$Color$RgbaSpace, 85 / 255, 87 / 255, 83 / 255, 1.0);
+var avh4$elm_color$Color$darkBlue = A4(avh4$elm_color$Color$RgbaSpace, 32 / 255, 74 / 255, 135 / 255, 1.0);
+var avh4$elm_color$Color$darkBrown = A4(avh4$elm_color$Color$RgbaSpace, 143 / 255, 89 / 255, 2 / 255, 1.0);
+var avh4$elm_color$Color$darkCharcoal = A4(avh4$elm_color$Color$RgbaSpace, 46 / 255, 52 / 255, 54 / 255, 1.0);
+var avh4$elm_color$Color$darkGreen = A4(avh4$elm_color$Color$RgbaSpace, 78 / 255, 154 / 255, 6 / 255, 1.0);
+var avh4$elm_color$Color$darkGrey = A4(avh4$elm_color$Color$RgbaSpace, 186 / 255, 189 / 255, 182 / 255, 1.0);
+var avh4$elm_color$Color$darkOrange = A4(avh4$elm_color$Color$RgbaSpace, 206 / 255, 92 / 255, 0 / 255, 1.0);
+var avh4$elm_color$Color$darkPurple = A4(avh4$elm_color$Color$RgbaSpace, 92 / 255, 53 / 255, 102 / 255, 1.0);
+var avh4$elm_color$Color$darkRed = A4(avh4$elm_color$Color$RgbaSpace, 164 / 255, 0 / 255, 0 / 255, 1.0);
+var avh4$elm_color$Color$darkYellow = A4(avh4$elm_color$Color$RgbaSpace, 196 / 255, 160 / 255, 0 / 255, 1.0);
+var avh4$elm_color$Color$green = A4(avh4$elm_color$Color$RgbaSpace, 115 / 255, 210 / 255, 22 / 255, 1.0);
+var avh4$elm_color$Color$grey = A4(avh4$elm_color$Color$RgbaSpace, 211 / 255, 215 / 255, 207 / 255, 1.0);
+var avh4$elm_color$Color$lightBrown = A4(avh4$elm_color$Color$RgbaSpace, 233 / 255, 185 / 255, 110 / 255, 1.0);
+var avh4$elm_color$Color$lightCharcoal = A4(avh4$elm_color$Color$RgbaSpace, 136 / 255, 138 / 255, 133 / 255, 1.0);
+var avh4$elm_color$Color$lightGreen = A4(avh4$elm_color$Color$RgbaSpace, 138 / 255, 226 / 255, 52 / 255, 1.0);
+var avh4$elm_color$Color$lightGrey = A4(avh4$elm_color$Color$RgbaSpace, 238 / 255, 238 / 255, 236 / 255, 1.0);
+var avh4$elm_color$Color$lightOrange = A4(avh4$elm_color$Color$RgbaSpace, 252 / 255, 175 / 255, 62 / 255, 1.0);
+var avh4$elm_color$Color$lightPurple = A4(avh4$elm_color$Color$RgbaSpace, 173 / 255, 127 / 255, 168 / 255, 1.0);
+var avh4$elm_color$Color$lightRed = A4(avh4$elm_color$Color$RgbaSpace, 239 / 255, 41 / 255, 41 / 255, 1.0);
+var avh4$elm_color$Color$lightYellow = A4(avh4$elm_color$Color$RgbaSpace, 255 / 255, 233 / 255, 79 / 255, 1.0);
+var avh4$elm_color$Color$orange = A4(avh4$elm_color$Color$RgbaSpace, 245 / 255, 121 / 255, 0 / 255, 1.0);
+var avh4$elm_color$Color$purple = A4(avh4$elm_color$Color$RgbaSpace, 117 / 255, 80 / 255, 123 / 255, 1.0);
+var avh4$elm_color$Color$red = A4(avh4$elm_color$Color$RgbaSpace, 204 / 255, 0 / 255, 0 / 255, 1.0);
+var avh4$elm_color$Color$yellow = A4(avh4$elm_color$Color$RgbaSpace, 237 / 255, 212 / 255, 0 / 255, 1.0);
+var elm$core$Basics$composeR = F3(
+	function (f, g, x) {
+		return g(
+			f(x));
+	});
+var author$project$Main$colorButtons = function (selectedColor) {
+	var layout = function (colors) {
+		return A2(
+			elm$core$List$map,
+			A2(
+				elm$core$Basics$composeR,
+				elm$core$List$map(
+					author$project$Main$colorButton(selectedColor)),
+				author$project$Main$col),
+			colors);
+	};
+	return A2(
+		elm$html$Html$div,
+		_List_fromArray(
+			[
+				A2(elm$html$Html$Attributes$style, 'display', 'flex'),
+				A2(elm$html$Html$Attributes$style, 'flex-direction', 'row'),
+				A2(elm$html$Html$Attributes$style, 'justify-content', 'space-around')
+			]),
+		layout(
+			_List_fromArray(
+				[
+					_List_fromArray(
+					[avh4$elm_color$Color$lightRed, avh4$elm_color$Color$red, avh4$elm_color$Color$darkRed]),
+					_List_fromArray(
+					[avh4$elm_color$Color$lightOrange, avh4$elm_color$Color$orange, avh4$elm_color$Color$darkOrange]),
+					_List_fromArray(
+					[avh4$elm_color$Color$lightYellow, avh4$elm_color$Color$yellow, avh4$elm_color$Color$darkYellow]),
+					_List_fromArray(
+					[avh4$elm_color$Color$lightGreen, avh4$elm_color$Color$green, avh4$elm_color$Color$darkGreen]),
+					_List_fromArray(
+					[avh4$elm_color$Color$lightBlue, avh4$elm_color$Color$blue, avh4$elm_color$Color$darkBlue]),
+					_List_fromArray(
+					[avh4$elm_color$Color$lightPurple, avh4$elm_color$Color$purple, avh4$elm_color$Color$darkPurple]),
+					_List_fromArray(
+					[avh4$elm_color$Color$lightBrown, avh4$elm_color$Color$brown, avh4$elm_color$Color$darkBrown]),
+					_List_fromArray(
+					[avh4$elm_color$Color$white, avh4$elm_color$Color$lightGrey, avh4$elm_color$Color$grey]),
+					_List_fromArray(
+					[avh4$elm_color$Color$darkGrey, avh4$elm_color$Color$lightCharcoal, avh4$elm_color$Color$charcoal]),
+					_List_fromArray(
+					[avh4$elm_color$Color$darkCharcoal, avh4$elm_color$Color$black])
+				])));
+};
+var elm$json$Json$Decode$field = _Json_decodeField;
+var elm$json$Json$Decode$float = _Json_decodeFloat;
+var author$project$Main$offsetDecoder = A2(
+	elm$json$Json$Decode$field,
+	'target',
+	A3(
+		elm$json$Json$Decode$map2,
+		F2(
+			function (top, left) {
+				return _Utils_Tuple2(left, top);
+			}),
+		A2(elm$json$Json$Decode$field, 'offsetTop', elm$json$Json$Decode$float),
+		A2(elm$json$Json$Decode$field, 'offsetLeft', elm$json$Json$Decode$float)));
+var elm$json$Json$Decode$map4 = _Json_map4;
+var mpizenberg$elm_pointer_events$Html$Events$Extra$Touch$Event = F4(
+	function (keys, changedTouches, targetTouches, touches) {
+		return {changedTouches: changedTouches, keys: keys, targetTouches: targetTouches, touches: touches};
+	});
+var elm$json$Json$Decode$int = _Json_decodeInt;
+var mpizenberg$elm_pointer_events$Html$Events$Extra$Touch$Touch = F4(
+	function (identifier, clientPos, pagePos, screenPos) {
+		return {clientPos: clientPos, identifier: identifier, pagePos: pagePos, screenPos: screenPos};
+	});
+var mpizenberg$elm_pointer_events$Internal$Decode$clientPos = A3(
+	elm$json$Json$Decode$map2,
+	F2(
+		function (a, b) {
+			return _Utils_Tuple2(a, b);
+		}),
+	A2(elm$json$Json$Decode$field, 'clientX', elm$json$Json$Decode$float),
+	A2(elm$json$Json$Decode$field, 'clientY', elm$json$Json$Decode$float));
+var mpizenberg$elm_pointer_events$Internal$Decode$pagePos = A3(
+	elm$json$Json$Decode$map2,
+	F2(
+		function (a, b) {
+			return _Utils_Tuple2(a, b);
+		}),
+	A2(elm$json$Json$Decode$field, 'pageX', elm$json$Json$Decode$float),
+	A2(elm$json$Json$Decode$field, 'pageY', elm$json$Json$Decode$float));
+var mpizenberg$elm_pointer_events$Internal$Decode$screenPos = A3(
+	elm$json$Json$Decode$map2,
+	F2(
+		function (a, b) {
+			return _Utils_Tuple2(a, b);
+		}),
+	A2(elm$json$Json$Decode$field, 'screenX', elm$json$Json$Decode$float),
+	A2(elm$json$Json$Decode$field, 'screenY', elm$json$Json$Decode$float));
+var mpizenberg$elm_pointer_events$Html$Events$Extra$Touch$touchDecoder = A5(
+	elm$json$Json$Decode$map4,
+	mpizenberg$elm_pointer_events$Html$Events$Extra$Touch$Touch,
+	A2(elm$json$Json$Decode$field, 'identifier', elm$json$Json$Decode$int),
+	mpizenberg$elm_pointer_events$Internal$Decode$clientPos,
+	mpizenberg$elm_pointer_events$Internal$Decode$pagePos,
+	mpizenberg$elm_pointer_events$Internal$Decode$screenPos);
+var elm$json$Json$Decode$andThen = _Json_andThen;
+var mpizenberg$elm_pointer_events$Internal$Decode$all = A2(
+	elm$core$List$foldr,
+	elm$json$Json$Decode$map2(elm$core$List$cons),
+	elm$json$Json$Decode$succeed(_List_Nil));
+var mpizenberg$elm_pointer_events$Internal$Decode$dynamicListOf = function (itemDecoder) {
+	var decodeOne = function (n) {
+		return A2(
+			elm$json$Json$Decode$field,
+			elm$core$String$fromInt(n),
+			itemDecoder);
+	};
+	var decodeN = function (n) {
+		return mpizenberg$elm_pointer_events$Internal$Decode$all(
+			A2(
+				elm$core$List$map,
+				decodeOne,
+				A2(elm$core$List$range, 0, n - 1)));
+	};
+	return A2(
+		elm$json$Json$Decode$andThen,
+		decodeN,
+		A2(elm$json$Json$Decode$field, 'length', elm$json$Json$Decode$int));
+};
+var mpizenberg$elm_pointer_events$Html$Events$Extra$Touch$touchListDecoder = mpizenberg$elm_pointer_events$Internal$Decode$dynamicListOf;
+var elm$json$Json$Decode$bool = _Json_decodeBool;
+var elm$json$Json$Decode$map3 = _Json_map3;
+var mpizenberg$elm_pointer_events$Internal$Decode$Keys = F3(
+	function (alt, ctrl, shift) {
+		return {alt: alt, ctrl: ctrl, shift: shift};
+	});
+var mpizenberg$elm_pointer_events$Internal$Decode$keys = A4(
+	elm$json$Json$Decode$map3,
+	mpizenberg$elm_pointer_events$Internal$Decode$Keys,
+	A2(elm$json$Json$Decode$field, 'altKey', elm$json$Json$Decode$bool),
+	A2(elm$json$Json$Decode$field, 'ctrlKey', elm$json$Json$Decode$bool),
+	A2(elm$json$Json$Decode$field, 'shiftKey', elm$json$Json$Decode$bool));
+var mpizenberg$elm_pointer_events$Html$Events$Extra$Touch$eventDecoder = A5(
+	elm$json$Json$Decode$map4,
+	mpizenberg$elm_pointer_events$Html$Events$Extra$Touch$Event,
+	mpizenberg$elm_pointer_events$Internal$Decode$keys,
+	A2(
+		elm$json$Json$Decode$field,
+		'changedTouches',
+		mpizenberg$elm_pointer_events$Html$Events$Extra$Touch$touchListDecoder(mpizenberg$elm_pointer_events$Html$Events$Extra$Touch$touchDecoder)),
+	A2(
+		elm$json$Json$Decode$field,
+		'targetTouches',
+		mpizenberg$elm_pointer_events$Html$Events$Extra$Touch$touchListDecoder(mpizenberg$elm_pointer_events$Html$Events$Extra$Touch$touchDecoder)),
+	A2(
+		elm$json$Json$Decode$field,
+		'touches',
+		mpizenberg$elm_pointer_events$Html$Events$Extra$Touch$touchListDecoder(mpizenberg$elm_pointer_events$Html$Events$Extra$Touch$touchDecoder)));
+var author$project$Main$eventDecoder = A3(
+	elm$json$Json$Decode$map2,
+	F2(
+		function (event, offset) {
+			return {event: event, targetOffset: offset};
+		}),
+	mpizenberg$elm_pointer_events$Html$Events$Extra$Touch$eventDecoder,
+	author$project$Main$offsetDecoder);
+var elm$virtual_dom$VirtualDom$Custom = function (a) {
+	return {$: 'Custom', a: a};
+};
+var elm$html$Html$Events$custom = F2(
+	function (event, decoder) {
+		return A2(
+			elm$virtual_dom$VirtualDom$on,
+			event,
+			elm$virtual_dom$VirtualDom$Custom(decoder));
+	});
+var author$project$Main$onTouch = F2(
+	function (event, tag) {
+		return A2(
+			elm$html$Html$Events$custom,
+			event,
+			A2(
+				elm$json$Json$Decode$map,
+				function (ev) {
+					return {
+						message: tag(ev),
+						preventDefault: true,
+						stopPropagation: true
+					};
+				},
+				author$project$Main$eventDecoder));
+	});
+var author$project$Main$SelectSize = function (a) {
+	return {$: 'SelectSize', a: a};
+};
+var author$project$Main$sizeControls = F2(
+	function (selectedColor, selectedSize) {
+		var inc = 10;
+		var brushes = 6;
+		var buttonSize = brushes * inc;
+		var controls = A2(
+			elm$core$List$map,
+			function (i) {
+				var size = A2(elm$core$Basics$max, 2, i * inc);
+				return A2(
+					elm$html$Html$button,
+					_List_fromArray(
+						[
+							A2(elm$html$Html$Attributes$style, '-webkit-appearance', 'none'),
+							A2(elm$html$Html$Attributes$style, '-moz-appearance', 'none'),
+							A2(elm$html$Html$Attributes$style, 'display', 'block'),
+							A2(elm$html$Html$Attributes$style, 'background-color', 'transparent'),
+							A2(elm$html$Html$Attributes$style, 'border', 'none'),
+							A2(elm$html$Html$Attributes$style, 'margin', '5px'),
+							A2(elm$html$Html$Attributes$style, 'padding', '0'),
+							A2(
+							elm$html$Html$Attributes$style,
+							'min-width',
+							elm$core$String$fromInt(30) + 'px'),
+							A2(
+							elm$html$Html$Attributes$style,
+							'min-height',
+							elm$core$String$fromInt(buttonSize) + 'px'),
+							A2(elm$html$Html$Attributes$style, 'outline', 'none'),
+							elm$html$Html$Events$onClick(
+							author$project$Main$SelectSize(size))
+						]),
+					_List_fromArray(
+						[
+							A2(
+							elm$html$Html$div,
+							_List_fromArray(
+								[
+									A2(elm$html$Html$Attributes$style, 'border-radius', '50%'),
+									A2(
+									elm$html$Html$Attributes$style,
+									'background-color',
+									avh4$elm_color$Color$toCssString(selectedColor)),
+									A2(
+									elm$html$Html$Attributes$style,
+									'border',
+									'3px solid ' + avh4$elm_color$Color$toCssString(
+										author$project$Main$getShadowColor(avh4$elm_color$Color$white))),
+									A2(
+									elm$html$Html$Attributes$style,
+									'width',
+									elm$core$String$fromInt(size) + 'px'),
+									A2(
+									elm$html$Html$Attributes$style,
+									'height',
+									elm$core$String$fromInt(size) + 'px'),
+									A2(elm$html$Html$Attributes$style, 'margin', '0 auto'),
+									A2(
+									elm$html$Html$Attributes$style,
+									'box-shadow',
+									_Utils_eq(selectedSize, size) ? 'rgba(0, 0, 0, 0.4) 0px 4px 6px' : 'none'),
+									A2(elm$html$Html$Attributes$style, 'transition', 'transform 0.2s linear'),
+									A2(
+									elm$html$Html$Attributes$style,
+									'transform',
+									_Utils_eq(selectedSize, size) ? 'translateY(-6px)' : 'none')
+								]),
+							_List_Nil)
+						]));
+			},
+			A2(elm$core$List$range, 0, brushes));
+		return A2(
+			elm$html$Html$div,
+			_List_fromArray(
+				[
+					A2(elm$html$Html$Attributes$style, 'display', 'flex'),
+					A2(elm$html$Html$Attributes$style, 'flex-direction', 'row'),
+					A2(elm$html$Html$Attributes$style, 'justify-content', 'space-around'),
+					A2(elm$html$Html$Attributes$style, 'align-items', 'center')
+				]),
+			controls);
+	});
+var elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return elm$core$Maybe$Just(x);
+	} else {
+		return elm$core$Maybe$Nothing;
+	}
+};
+var elm$core$Maybe$map = F2(
+	function (f, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return elm$core$Maybe$Just(
+				f(value));
+		} else {
+			return elm$core$Maybe$Nothing;
+		}
+	});
+var elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var author$project$Main$touchCoordinates = function (_n0) {
+	var event = _n0.event;
+	var targetOffset = _n0.targetOffset;
+	return A2(
+		elm$core$Maybe$withDefault,
+		_Utils_Tuple2(0, 0),
+		A2(
+			elm$core$Maybe$map,
+			function (touch) {
+				var _n1 = targetOffset;
+				var x2 = _n1.a;
+				var y2 = _n1.b;
+				var _n2 = touch.pagePos;
+				var x = _n2.a;
+				var y = _n2.b;
+				return _Utils_Tuple2(x - x2, y - y2);
+			},
+			elm$core$List$head(event.changedTouches)));
+};
+var elm$html$Html$p = _VirtualDom_node('p');
+var elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
+var elm$html$Html$text = elm$virtual_dom$VirtualDom$text;
 var elm$html$Html$Attributes$height = function (n) {
 	return A2(
 		_VirtualDom_attribute,
@@ -5254,6 +6351,31 @@ var elm$html$Html$canvas = _VirtualDom_node('canvas');
 var joakin$elm_canvas$Canvas$cnvs = A2(elm$html$Html$canvas, _List_Nil, _List_Nil);
 var elm$core$Basics$cos = _Basics_cos;
 var elm$core$Basics$sin = _Basics_sin;
+var elm$json$Json$Encode$list = F2(
+	function (func, entries) {
+		return _Json_wrap(
+			A3(
+				elm$core$List$foldl,
+				_Json_addEntry(func),
+				_Json_emptyArray(_Utils_Tuple0),
+				entries));
+	});
+var joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fn = F2(
+	function (name, args) {
+		return elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					elm$json$Json$Encode$string('function')),
+					_Utils_Tuple2(
+					'name',
+					elm$json$Json$Encode$string(name)),
+					_Utils_Tuple2(
+					'args',
+					A2(elm$json$Json$Encode$list, elm$core$Basics$identity, args))
+				]));
+	});
 var joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$arcTo = F5(
 	function (x1, y1, x2, y2, radius) {
 		return A2(
@@ -5392,6 +6514,7 @@ var joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$arc = F6(
 					elm$json$Json$Encode$bool(anticlockwise)
 				]));
 	});
+var elm$core$Basics$pi = _Basics_pi;
 var joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$circle = F3(
 	function (x, y, r) {
 		return A6(joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$arc, x, y, r, 0, 2 * elm$core$Basics$pi, false);
@@ -5470,7 +6593,6 @@ var joakin$elm_canvas$Canvas$renderShape = F2(
 						cmds));
 		}
 	});
-var avh4$elm_color$Color$black = A4(avh4$elm_color$Color$RgbaSpace, 0 / 255, 0 / 255, 0 / 255, 1.0);
 var joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$NonZero = {$: 'NonZero'};
 var joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fillRuleToString = function (fillRule) {
 	if (fillRule.$ === 'NonZero') {
@@ -5489,54 +6611,6 @@ var joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fill = function (fill
 				joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fillRuleToString(fillRule))
 			]));
 };
-var elm$core$Basics$round = _Basics_round;
-var elm$core$String$concat = function (strings) {
-	return A2(elm$core$String$join, '', strings);
-};
-var elm$core$String$fromFloat = _String_fromNumber;
-var avh4$elm_color$Color$toCssString = function (_n0) {
-	var r = _n0.a;
-	var g = _n0.b;
-	var b = _n0.c;
-	var a = _n0.d;
-	var roundTo = function (x) {
-		return elm$core$Basics$round(x * 1000) / 1000;
-	};
-	var pct = function (x) {
-		return elm$core$Basics$round(x * 10000) / 100;
-	};
-	return elm$core$String$concat(
-		_List_fromArray(
-			[
-				'rgba(',
-				elm$core$String$fromFloat(
-				pct(r)),
-				'%,',
-				elm$core$String$fromFloat(
-				pct(g)),
-				'%,',
-				elm$core$String$fromFloat(
-				pct(b)),
-				'%,',
-				elm$core$String$fromFloat(
-				roundTo(a)),
-				')'
-			]));
-};
-var joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$field = F2(
-	function (name, value) {
-		return elm$json$Json$Encode$object(
-			_List_fromArray(
-				[
-					_Utils_Tuple2(
-					'type',
-					elm$json$Json$Encode$string('field')),
-					_Utils_Tuple2(
-					'name',
-					elm$json$Json$Encode$string(name)),
-					_Utils_Tuple2('value', value)
-				]));
-	});
 var joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$fillStyle = function (color) {
 	return A2(
 		joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$field,
@@ -5780,11 +6854,6 @@ var joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$empty = _List_Nil;
 var joakin$elm_canvas$Canvas$render = function (entities) {
 	return A3(elm$core$List$foldl, joakin$elm_canvas$Canvas$renderOne, joakin$elm_canvas$Canvas$Internal$CustomElementJsonApi$empty, entities);
 };
-var elm$core$Basics$composeR = F3(
-	function (f, g, x) {
-		return g(
-			f(x));
-	});
 var elm$html$Html$img = _VirtualDom_node('img');
 var elm$html$Html$Attributes$stringProperty = F2(
 	function (key, string) {
@@ -5799,24 +6868,10 @@ var elm$html$Html$Attributes$src = function (url) {
 		'src',
 		_VirtualDom_noJavaScriptOrHtmlUri(url));
 };
-var elm$virtual_dom$VirtualDom$Normal = function (a) {
-	return {$: 'Normal', a: a};
-};
-var elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
-var elm$html$Html$Events$on = F2(
-	function (event, decoder) {
-		return A2(
-			elm$virtual_dom$VirtualDom$on,
-			event,
-			elm$virtual_dom$VirtualDom$Normal(decoder));
-	});
-var elm$json$Json$Decode$andThen = _Json_andThen;
-var elm$json$Json$Decode$field = _Json_decodeField;
 var elm$json$Json$Decode$at = F2(
 	function (fields, decoder) {
 		return A3(elm$core$List$foldr, elm$json$Json$Decode$field, decoder, fields);
 	});
-var elm$json$Json$Decode$float = _Json_decodeFloat;
 var elm$json$Json$Decode$value = _Json_decodeValue;
 var joakin$elm_canvas$Canvas$decodeTextureImageInfo = A2(
 	elm$json$Json$Decode$andThen,
@@ -5916,413 +6971,161 @@ var joakin$elm_canvas$Canvas$toHtml = F3(
 			attrs,
 			entities);
 	});
-var author$project$Main$view = function (model) {
+var mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$defaultOptions = {preventDefault: true, stopPropagation: false};
+var elm$json$Json$Decode$map6 = _Json_map6;
+var mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$Event = F6(
+	function (keys, button, clientPos, offsetPos, pagePos, screenPos) {
+		return {button: button, clientPos: clientPos, keys: keys, offsetPos: offsetPos, pagePos: pagePos, screenPos: screenPos};
+	});
+var mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$BackButton = {$: 'BackButton'};
+var mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$ErrorButton = {$: 'ErrorButton'};
+var mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$ForwardButton = {$: 'ForwardButton'};
+var mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$MainButton = {$: 'MainButton'};
+var mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$MiddleButton = {$: 'MiddleButton'};
+var mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$SecondButton = {$: 'SecondButton'};
+var mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$buttonFromId = function (id) {
+	switch (id) {
+		case 0:
+			return mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$MainButton;
+		case 1:
+			return mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$MiddleButton;
+		case 2:
+			return mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$SecondButton;
+		case 3:
+			return mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$BackButton;
+		case 4:
+			return mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$ForwardButton;
+		default:
+			return mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$ErrorButton;
+	}
+};
+var mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$buttonDecoder = A2(
+	elm$json$Json$Decode$map,
+	mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$buttonFromId,
+	A2(elm$json$Json$Decode$field, 'button', elm$json$Json$Decode$int));
+var mpizenberg$elm_pointer_events$Internal$Decode$offsetPos = A3(
+	elm$json$Json$Decode$map2,
+	F2(
+		function (a, b) {
+			return _Utils_Tuple2(a, b);
+		}),
+	A2(elm$json$Json$Decode$field, 'offsetX', elm$json$Json$Decode$float),
+	A2(elm$json$Json$Decode$field, 'offsetY', elm$json$Json$Decode$float));
+var mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$eventDecoder = A7(elm$json$Json$Decode$map6, mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$Event, mpizenberg$elm_pointer_events$Internal$Decode$keys, mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$buttonDecoder, mpizenberg$elm_pointer_events$Internal$Decode$clientPos, mpizenberg$elm_pointer_events$Internal$Decode$offsetPos, mpizenberg$elm_pointer_events$Internal$Decode$pagePos, mpizenberg$elm_pointer_events$Internal$Decode$screenPos);
+var mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$onWithOptions = F3(
+	function (event, options, tag) {
+		return A2(
+			elm$html$Html$Events$custom,
+			event,
+			A2(
+				elm$json$Json$Decode$map,
+				function (ev) {
+					return {
+						message: tag(ev),
+						preventDefault: options.preventDefault,
+						stopPropagation: options.stopPropagation
+					};
+				},
+				mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$eventDecoder));
+	});
+var mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$onDown = A2(mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$onWithOptions, 'mousedown', mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$defaultOptions);
+var mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$onMove = A2(mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$onWithOptions, 'mousemove', mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$defaultOptions);
+var mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$onUp = A2(mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$onWithOptions, 'mouseup', mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$defaultOptions);
+var author$project$Main$view = function (_n0) {
+	var color = _n0.color;
+	var size = _n0.size;
+	var toDraw = _n0.toDraw;
 	return A2(
 		elm$html$Html$div,
+		_List_Nil,
 		_List_fromArray(
 			[
-				A2(elm$html$Html$Attributes$style, 'display', 'flex'),
-				A2(elm$html$Html$Attributes$style, 'justify-content', 'center'),
-				A2(elm$html$Html$Attributes$style, 'align-items', 'center')
-			]),
-		_List_fromArray(
-			[
-				A3(
-				joakin$elm_canvas$Canvas$toHtml,
-				_Utils_Tuple2(author$project$Main$width, author$project$Main$height),
+				A2(
+				elm$html$Html$p,
 				_List_fromArray(
 					[
-						A2(elm$html$Html$Attributes$style, 'border', '10px solid rgba(0,0,0,0.1)')
+						A2(elm$html$Html$Attributes$style, 'text-align', 'center'),
+						A2(elm$html$Html$Attributes$style, 'font-size', '80%')
 					]),
 				_List_fromArray(
 					[
-						author$project$Main$clearScreen,
-						author$project$Main$render(model.count)
+						elm$html$Html$text('Draw something! (mouse or touch)')
+					])),
+				A3(
+				joakin$elm_canvas$Canvas$toHtml,
+				_Utils_Tuple2(author$project$Main$w, author$project$Main$h),
+				_List_fromArray(
+					[
+						A2(elm$html$Html$Attributes$style, 'touch-action', 'none'),
+						mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$onDown(
+						A2(
+							elm$core$Basics$composeR,
+							function ($) {
+								return $.offsetPos;
+							},
+							author$project$Main$StartAt)),
+						mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$onMove(
+						A2(
+							elm$core$Basics$composeR,
+							function ($) {
+								return $.offsetPos;
+							},
+							author$project$Main$MoveAt)),
+						mpizenberg$elm_pointer_events$Html$Events$Extra$Mouse$onUp(
+						A2(
+							elm$core$Basics$composeR,
+							function ($) {
+								return $.offsetPos;
+							},
+							author$project$Main$EndAt)),
+						A2(
+						author$project$Main$onTouch,
+						'touchstart',
+						A2(elm$core$Basics$composeR, author$project$Main$touchCoordinates, author$project$Main$StartAt)),
+						A2(
+						author$project$Main$onTouch,
+						'touchmove',
+						A2(elm$core$Basics$composeR, author$project$Main$touchCoordinates, author$project$Main$MoveAt)),
+						A2(
+						author$project$Main$onTouch,
+						'touchend',
+						A2(elm$core$Basics$composeR, author$project$Main$touchCoordinates, author$project$Main$EndAt))
+					]),
+				toDraw),
+				A2(
+				elm$html$Html$div,
+				_List_Nil,
+				_List_fromArray(
+					[
+						A2(
+						elm$html$Html$button,
+						_List_fromArray(
+							[
+								elm$html$Html$Events$onClick(author$project$Main$Reset)
+							]),
+						_List_fromArray(
+							[
+								elm$html$Html$text('Reset')
+							]))
+					])),
+				A2(
+				elm$html$Html$div,
+				_List_fromArray(
+					[
+						A2(
+						elm$html$Html$Attributes$style,
+						'max-width',
+						elm$core$String$fromInt(author$project$Main$w - 20) + 'px'),
+						A2(elm$html$Html$Attributes$style, 'padding', '10px')
+					]),
+				_List_fromArray(
+					[
+						A2(author$project$Main$sizeControls, color, size),
+						author$project$Main$colorButtons(color)
 					]))
 			]));
 };
-var elm$browser$Browser$External = function (a) {
-	return {$: 'External', a: a};
-};
-var elm$browser$Browser$Internal = function (a) {
-	return {$: 'Internal', a: a};
-};
-var elm$browser$Browser$Dom$NotFound = function (a) {
-	return {$: 'NotFound', a: a};
-};
-var elm$core$Basics$never = function (_n0) {
-	never:
-	while (true) {
-		var nvr = _n0.a;
-		var $temp$_n0 = nvr;
-		_n0 = $temp$_n0;
-		continue never;
-	}
-};
-var elm$core$Task$Perform = function (a) {
-	return {$: 'Perform', a: a};
-};
-var elm$core$Task$succeed = _Scheduler_succeed;
-var elm$core$Task$init = elm$core$Task$succeed(_Utils_Tuple0);
-var elm$core$Task$andThen = _Scheduler_andThen;
-var elm$core$Task$map = F2(
-	function (func, taskA) {
-		return A2(
-			elm$core$Task$andThen,
-			function (a) {
-				return elm$core$Task$succeed(
-					func(a));
-			},
-			taskA);
-	});
-var elm$core$Task$map2 = F3(
-	function (func, taskA, taskB) {
-		return A2(
-			elm$core$Task$andThen,
-			function (a) {
-				return A2(
-					elm$core$Task$andThen,
-					function (b) {
-						return elm$core$Task$succeed(
-							A2(func, a, b));
-					},
-					taskB);
-			},
-			taskA);
-	});
-var elm$core$Task$sequence = function (tasks) {
-	return A3(
-		elm$core$List$foldr,
-		elm$core$Task$map2(elm$core$List$cons),
-		elm$core$Task$succeed(_List_Nil),
-		tasks);
-};
-var elm$core$Platform$sendToApp = _Platform_sendToApp;
-var elm$core$Task$spawnCmd = F2(
-	function (router, _n0) {
-		var task = _n0.a;
-		return _Scheduler_spawn(
-			A2(
-				elm$core$Task$andThen,
-				elm$core$Platform$sendToApp(router),
-				task));
-	});
-var elm$core$Task$onEffects = F3(
-	function (router, commands, state) {
-		return A2(
-			elm$core$Task$map,
-			function (_n0) {
-				return _Utils_Tuple0;
-			},
-			elm$core$Task$sequence(
-				A2(
-					elm$core$List$map,
-					elm$core$Task$spawnCmd(router),
-					commands)));
-	});
-var elm$core$Task$onSelfMsg = F3(
-	function (_n0, _n1, _n2) {
-		return elm$core$Task$succeed(_Utils_Tuple0);
-	});
-var elm$core$Task$cmdMap = F2(
-	function (tagger, _n0) {
-		var task = _n0.a;
-		return elm$core$Task$Perform(
-			A2(elm$core$Task$map, tagger, task));
-	});
-_Platform_effectManagers['Task'] = _Platform_createManager(elm$core$Task$init, elm$core$Task$onEffects, elm$core$Task$onSelfMsg, elm$core$Task$cmdMap);
-var elm$core$Task$command = _Platform_leaf('Task');
-var elm$core$Task$perform = F2(
-	function (toMessage, task) {
-		return elm$core$Task$command(
-			elm$core$Task$Perform(
-				A2(elm$core$Task$map, toMessage, task)));
-	});
-var elm$core$String$length = _String_length;
-var elm$core$String$slice = _String_slice;
-var elm$core$String$dropLeft = F2(
-	function (n, string) {
-		return (n < 1) ? string : A3(
-			elm$core$String$slice,
-			n,
-			elm$core$String$length(string),
-			string);
-	});
-var elm$core$String$startsWith = _String_startsWith;
-var elm$url$Url$Http = {$: 'Http'};
-var elm$url$Url$Https = {$: 'Https'};
-var elm$core$String$indexes = _String_indexes;
-var elm$core$String$isEmpty = function (string) {
-	return string === '';
-};
-var elm$core$String$left = F2(
-	function (n, string) {
-		return (n < 1) ? '' : A3(elm$core$String$slice, 0, n, string);
-	});
-var elm$core$String$contains = _String_contains;
-var elm$core$String$toInt = _String_toInt;
-var elm$url$Url$Url = F6(
-	function (protocol, host, port_, path, query, fragment) {
-		return {fragment: fragment, host: host, path: path, port_: port_, protocol: protocol, query: query};
-	});
-var elm$url$Url$chompBeforePath = F5(
-	function (protocol, path, params, frag, str) {
-		if (elm$core$String$isEmpty(str) || A2(elm$core$String$contains, '@', str)) {
-			return elm$core$Maybe$Nothing;
-		} else {
-			var _n0 = A2(elm$core$String$indexes, ':', str);
-			if (!_n0.b) {
-				return elm$core$Maybe$Just(
-					A6(elm$url$Url$Url, protocol, str, elm$core$Maybe$Nothing, path, params, frag));
-			} else {
-				if (!_n0.b.b) {
-					var i = _n0.a;
-					var _n1 = elm$core$String$toInt(
-						A2(elm$core$String$dropLeft, i + 1, str));
-					if (_n1.$ === 'Nothing') {
-						return elm$core$Maybe$Nothing;
-					} else {
-						var port_ = _n1;
-						return elm$core$Maybe$Just(
-							A6(
-								elm$url$Url$Url,
-								protocol,
-								A2(elm$core$String$left, i, str),
-								port_,
-								path,
-								params,
-								frag));
-					}
-				} else {
-					return elm$core$Maybe$Nothing;
-				}
-			}
-		}
-	});
-var elm$url$Url$chompBeforeQuery = F4(
-	function (protocol, params, frag, str) {
-		if (elm$core$String$isEmpty(str)) {
-			return elm$core$Maybe$Nothing;
-		} else {
-			var _n0 = A2(elm$core$String$indexes, '/', str);
-			if (!_n0.b) {
-				return A5(elm$url$Url$chompBeforePath, protocol, '/', params, frag, str);
-			} else {
-				var i = _n0.a;
-				return A5(
-					elm$url$Url$chompBeforePath,
-					protocol,
-					A2(elm$core$String$dropLeft, i, str),
-					params,
-					frag,
-					A2(elm$core$String$left, i, str));
-			}
-		}
-	});
-var elm$url$Url$chompBeforeFragment = F3(
-	function (protocol, frag, str) {
-		if (elm$core$String$isEmpty(str)) {
-			return elm$core$Maybe$Nothing;
-		} else {
-			var _n0 = A2(elm$core$String$indexes, '?', str);
-			if (!_n0.b) {
-				return A4(elm$url$Url$chompBeforeQuery, protocol, elm$core$Maybe$Nothing, frag, str);
-			} else {
-				var i = _n0.a;
-				return A4(
-					elm$url$Url$chompBeforeQuery,
-					protocol,
-					elm$core$Maybe$Just(
-						A2(elm$core$String$dropLeft, i + 1, str)),
-					frag,
-					A2(elm$core$String$left, i, str));
-			}
-		}
-	});
-var elm$url$Url$chompAfterProtocol = F2(
-	function (protocol, str) {
-		if (elm$core$String$isEmpty(str)) {
-			return elm$core$Maybe$Nothing;
-		} else {
-			var _n0 = A2(elm$core$String$indexes, '#', str);
-			if (!_n0.b) {
-				return A3(elm$url$Url$chompBeforeFragment, protocol, elm$core$Maybe$Nothing, str);
-			} else {
-				var i = _n0.a;
-				return A3(
-					elm$url$Url$chompBeforeFragment,
-					protocol,
-					elm$core$Maybe$Just(
-						A2(elm$core$String$dropLeft, i + 1, str)),
-					A2(elm$core$String$left, i, str));
-			}
-		}
-	});
-var elm$url$Url$fromString = function (str) {
-	return A2(elm$core$String$startsWith, 'http://', str) ? A2(
-		elm$url$Url$chompAfterProtocol,
-		elm$url$Url$Http,
-		A2(elm$core$String$dropLeft, 7, str)) : (A2(elm$core$String$startsWith, 'https://', str) ? A2(
-		elm$url$Url$chompAfterProtocol,
-		elm$url$Url$Https,
-		A2(elm$core$String$dropLeft, 8, str)) : elm$core$Maybe$Nothing);
-};
 var elm$browser$Browser$element = _Browser_element;
-var elm$browser$Browser$AnimationManager$Delta = function (a) {
-	return {$: 'Delta', a: a};
-};
-var elm$browser$Browser$AnimationManager$State = F3(
-	function (subs, request, oldTime) {
-		return {oldTime: oldTime, request: request, subs: subs};
-	});
-var elm$browser$Browser$AnimationManager$init = elm$core$Task$succeed(
-	A3(elm$browser$Browser$AnimationManager$State, _List_Nil, elm$core$Maybe$Nothing, 0));
-var elm$browser$Browser$AnimationManager$now = _Browser_now(_Utils_Tuple0);
-var elm$browser$Browser$AnimationManager$rAF = _Browser_rAF(_Utils_Tuple0);
-var elm$core$Platform$sendToSelf = _Platform_sendToSelf;
-var elm$core$Process$kill = _Scheduler_kill;
-var elm$core$Process$spawn = _Scheduler_spawn;
-var elm$browser$Browser$AnimationManager$onEffects = F3(
-	function (router, subs, _n0) {
-		var request = _n0.request;
-		var oldTime = _n0.oldTime;
-		var _n1 = _Utils_Tuple2(request, subs);
-		if (_n1.a.$ === 'Nothing') {
-			if (!_n1.b.b) {
-				var _n2 = _n1.a;
-				return elm$browser$Browser$AnimationManager$init;
-			} else {
-				var _n4 = _n1.a;
-				return A2(
-					elm$core$Task$andThen,
-					function (pid) {
-						return A2(
-							elm$core$Task$andThen,
-							function (time) {
-								return elm$core$Task$succeed(
-									A3(
-										elm$browser$Browser$AnimationManager$State,
-										subs,
-										elm$core$Maybe$Just(pid),
-										time));
-							},
-							elm$browser$Browser$AnimationManager$now);
-					},
-					elm$core$Process$spawn(
-						A2(
-							elm$core$Task$andThen,
-							elm$core$Platform$sendToSelf(router),
-							elm$browser$Browser$AnimationManager$rAF)));
-			}
-		} else {
-			if (!_n1.b.b) {
-				var pid = _n1.a.a;
-				return A2(
-					elm$core$Task$andThen,
-					function (_n3) {
-						return elm$browser$Browser$AnimationManager$init;
-					},
-					elm$core$Process$kill(pid));
-			} else {
-				return elm$core$Task$succeed(
-					A3(elm$browser$Browser$AnimationManager$State, subs, request, oldTime));
-			}
-		}
-	});
-var elm$time$Time$Posix = function (a) {
-	return {$: 'Posix', a: a};
-};
-var elm$time$Time$millisToPosix = elm$time$Time$Posix;
-var elm$browser$Browser$AnimationManager$onSelfMsg = F3(
-	function (router, newTime, _n0) {
-		var subs = _n0.subs;
-		var oldTime = _n0.oldTime;
-		var send = function (sub) {
-			if (sub.$ === 'Time') {
-				var tagger = sub.a;
-				return A2(
-					elm$core$Platform$sendToApp,
-					router,
-					tagger(
-						elm$time$Time$millisToPosix(newTime)));
-			} else {
-				var tagger = sub.a;
-				return A2(
-					elm$core$Platform$sendToApp,
-					router,
-					tagger(newTime - oldTime));
-			}
-		};
-		return A2(
-			elm$core$Task$andThen,
-			function (pid) {
-				return A2(
-					elm$core$Task$andThen,
-					function (_n1) {
-						return elm$core$Task$succeed(
-							A3(
-								elm$browser$Browser$AnimationManager$State,
-								subs,
-								elm$core$Maybe$Just(pid),
-								newTime));
-					},
-					elm$core$Task$sequence(
-						A2(elm$core$List$map, send, subs)));
-			},
-			elm$core$Process$spawn(
-				A2(
-					elm$core$Task$andThen,
-					elm$core$Platform$sendToSelf(router),
-					elm$browser$Browser$AnimationManager$rAF)));
-	});
-var elm$browser$Browser$AnimationManager$Time = function (a) {
-	return {$: 'Time', a: a};
-};
-var elm$core$Basics$composeL = F3(
-	function (g, f, x) {
-		return g(
-			f(x));
-	});
-var elm$browser$Browser$AnimationManager$subMap = F2(
-	function (func, sub) {
-		if (sub.$ === 'Time') {
-			var tagger = sub.a;
-			return elm$browser$Browser$AnimationManager$Time(
-				A2(elm$core$Basics$composeL, func, tagger));
-		} else {
-			var tagger = sub.a;
-			return elm$browser$Browser$AnimationManager$Delta(
-				A2(elm$core$Basics$composeL, func, tagger));
-		}
-	});
-_Platform_effectManagers['Browser.AnimationManager'] = _Platform_createManager(elm$browser$Browser$AnimationManager$init, elm$browser$Browser$AnimationManager$onEffects, elm$browser$Browser$AnimationManager$onSelfMsg, 0, elm$browser$Browser$AnimationManager$subMap);
-var elm$browser$Browser$AnimationManager$subscription = _Platform_leaf('Browser.AnimationManager');
-var elm$browser$Browser$AnimationManager$onAnimationFrameDelta = function (tagger) {
-	return elm$browser$Browser$AnimationManager$subscription(
-		elm$browser$Browser$AnimationManager$Delta(tagger));
-};
-var elm$browser$Browser$Events$onAnimationFrameDelta = elm$browser$Browser$AnimationManager$onAnimationFrameDelta;
-var elm$core$Platform$Cmd$batch = _Platform_batch;
-var elm$core$Platform$Cmd$none = elm$core$Platform$Cmd$batch(_List_Nil);
 var author$project$Main$main = elm$browser$Browser$element(
-	{
-		init: function (_n0) {
-			return _Utils_Tuple2(
-				{count: 0},
-				elm$core$Platform$Cmd$none);
-		},
-		subscriptions: function (model) {
-			return elm$browser$Browser$Events$onAnimationFrameDelta(author$project$Main$Frame);
-		},
-		update: F2(
-			function (msg, model) {
-				return _Utils_Tuple2(
-					_Utils_update(
-						model,
-						{count: model.count + 1}),
-					elm$core$Platform$Cmd$none);
-			}),
-		view: author$project$Main$view
-	});
-_Platform_export({'Main':{'init':author$project$Main$main(
-	elm$json$Json$Decode$succeed(_Utils_Tuple0))(0)}});}(this));
+	{init: author$project$Main$init, subscriptions: author$project$Main$subscriptions, update: author$project$Main$update, view: author$project$Main$view});
+_Platform_export({'Main':{'init':author$project$Main$main(elm$json$Json$Decode$float)(0)}});}(this));
